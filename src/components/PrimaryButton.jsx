@@ -8,7 +8,7 @@ function PrimaryButton({ path, title, action }) {
         navigate(path); // Navigates to the next page
     };
 
-    return <h1 onClick={handleClick}>{title}</h1>;
+    return <button onClick={handleClick}>{title}</button>;
 }
 
 export default PrimaryButton;
