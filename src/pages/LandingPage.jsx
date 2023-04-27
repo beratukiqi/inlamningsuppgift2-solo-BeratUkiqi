@@ -4,6 +4,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import PlayerCardSmall from "../components/PlayerCardSmall";
 import PlayerCardTiny from "../components/PlayerCardTiny";
 import PlayerCardBig from "../components/PlayerCardBig";
+import ScoreBoard from "../components/ScoreBoard";
 
 const player = {
     name: "Berat",
@@ -38,21 +39,7 @@ function LandingPage() {
             />
             <ContentContainer
                 title={"Scoreboard"}
-                renderContent={() => (
-                    <div
-                        className="scoreboard-container"
-                        style={{
-                            gridTemplateColumns: `repeat(${noOfPlayers}, 1fr)`,
-                        }}
-                    >
-                        <PlayerCardTiny player={player} />
-                        <PlayerCardTiny player={player} />
-                        <PlayerCardTiny player={player} />
-                        <PlayerCardTiny player={player} />
-                        <PlayerCardTiny player={player} />
-                        <PlayerCardTiny player={player} />
-                    </div>
-                )}
+                renderContent={() => <ScoreBoard />}
             />
             <PrimaryButton title={"Next"} path={"/register"} />
             {/* <PlayerCardSmall player={player} /> */}
