@@ -5,7 +5,21 @@ function ContentContainer({ title, renderContent }) {
         <section className={style.ContentContainer}>
             <header className={style.ContentContainer__header}>
                 <h2>{title}</h2>
-                <button>^</button>
+                <svg
+                    width="13"
+                    height="5"
+                    viewBox="0 0 13 5"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M12 4L6.37778 1L1 4"
+                        stroke="#393939"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
             </header>
             {renderContent()}
         </section>

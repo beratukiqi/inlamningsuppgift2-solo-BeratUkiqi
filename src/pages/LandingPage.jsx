@@ -6,6 +6,7 @@ import PlayerCardTiny from "../components/PlayerCardTiny";
 import PlayerCardBig from "../components/PlayerCardBig";
 import ScoreBoard from "../components/ScoreBoard";
 import Leaderboard from "../components/Leaderboard";
+import PlayerSetup from "../components/PlayerSetup";
 
 const player = {
     name: "Berat",
@@ -19,28 +20,31 @@ function LandingPage() {
     return (
         <main>
             <Header title={"Let’s set up some things before we start!"} />
-            <ContentContainer
-                title={"Leaderboard"}
-                renderContent={() => <Leaderboard />}
-            />
+            <section
+                className="contentWrapper"
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                    marginTop: "3rem",
+                }}
+            >
+                <ContentContainer
+                    title={"Leaderboard"}
+                    renderContent={() => <Leaderboard />}
+                />
 
-            <ContentContainer
-                title={"Registration is open!"}
-                renderContent={() => (
-                    <>
-                        <PlayerCardBig player={player} />
-                        <PlayerCardBig player={player} />
-                    </>
-                )}
-            />
-            <ContentContainer
-                title={"Scoreboard"}
-                renderContent={() => <ScoreBoard />}
-            />
+                <ContentContainer
+                    title={"Registration is open!"}
+                    renderContent={() => <PlayerSetup />}
+                />
+                <ContentContainer
+                    title={"Scoreboard"}
+                    renderContent={() => <ScoreBoard />}
+                />
+            </section>
+
             <PrimaryButton title={"Next"} path={"/register"} />
-            {/* <PlayerCardSmall player={player} /> */}
-            {/* <PlayerCardTiny player={player} /> */}
-            {/* <PlayerCardBig player={player} /> */}
         </main>
     );
 }
