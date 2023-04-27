@@ -5,6 +5,7 @@ import PlayerCardSmall from "../components/PlayerCardSmall";
 import PlayerCardTiny from "../components/PlayerCardTiny";
 import PlayerCardBig from "../components/PlayerCardBig";
 import ScoreBoard from "../components/ScoreBoard";
+import Leaderboard from "../components/Leaderboard";
 
 const player = {
     name: "Berat",
@@ -20,14 +21,9 @@ function LandingPage() {
             <Header title={"Let’s set up some things before we start!"} />
             <ContentContainer
                 title={"Leaderboard"}
-                renderContent={() => (
-                    <>
-                        <PlayerCardSmall player={player} />
-                        <PlayerCardSmall player={player} />
-                        <PlayerCardSmall player={player} />
-                    </>
-                )}
+                renderContent={() => <Leaderboard />}
             />
+
             <ContentContainer
                 title={"Registration is open!"}
                 renderContent={() => (
