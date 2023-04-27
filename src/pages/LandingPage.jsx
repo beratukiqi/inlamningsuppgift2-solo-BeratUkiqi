@@ -1,7 +1,14 @@
+import Header from "../components/Header";
+import ContentContainer from "../components/ContentContainer";
+import PrimaryButton from "../components/PrimaryButton";
+
 function LandingPage() {
     return (
         <main>
-            <h1>Landingpage</h1>
+            <Header title={"Let’s set up some things before we start!"} />
+            <ContentContainer />
+            <ContentContainer />
+            <PrimaryButton title={"Next"} path={"/register"} />
         </main>
     );
 }
