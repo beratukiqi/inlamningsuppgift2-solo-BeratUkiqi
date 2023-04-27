@@ -11,12 +11,14 @@ const player = {
     pointsHistory: [4, 15, 55, 152], // Each rounds points are added here
 };
 
+const noOfPlayers = 6;
+
 function LandingPage() {
     return (
         <main>
             <Header title={"Let’s set up some things before we start!"} />
             <ContentContainer
-                title={"Registration is open!"}
+                title={"Leaderboard"}
                 renderContent={() => (
                     <>
                         <PlayerCardSmall player={player} />
@@ -35,9 +37,16 @@ function LandingPage() {
                 )}
             />
             <ContentContainer
-                title={"Registration is open!"}
+                title={"Scoreboard"}
                 renderContent={() => (
-                    <div className="scoreboard-container">
+                    <div
+                        className="scoreboard-container"
+                        style={{
+                            gridTemplateColumns: `repeat(${noOfPlayers}, 1fr)`,
+                        }}
+                    >
+                        <PlayerCardTiny player={player} />
+                        <PlayerCardTiny player={player} />
                         <PlayerCardTiny player={player} />
                         <PlayerCardTiny player={player} />
                         <PlayerCardTiny player={player} />
