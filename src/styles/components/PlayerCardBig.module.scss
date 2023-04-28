@@ -13,11 +13,16 @@
         align-items: center;
         justify-content: center;
         border-radius: 10rem;
+        width: 100%;
 
         p {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
         }
+    }
+
+    input {
+        width: 50%;
     }
 
     &__buttons {

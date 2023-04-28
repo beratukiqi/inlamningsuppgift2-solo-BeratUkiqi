@@ -6,9 +6,10 @@ import PlayerCardTiny from "../components/PlayerCardTiny";
 import PlayerCardBig from "../components/PlayerCardBig";
 import ScoreBoard from "../components/ScoreBoard";
 import Leaderboard from "../components/Leaderboard";
-import PlayerSetup from "../components/PlayerSetup";
+import PlayerSetup from "../components/PlayerRegister";
 import SecondaryButton from "../components/SecondaryButton";
 import { useSelector } from "react-redux";
+import InputField from "../components/InputField";
 
 function LandingPage() {
     const playerList = useSelector((state) => state.players);
@@ -26,15 +27,23 @@ function LandingPage() {
                 }}
             >
                 <ContentContainer
+                    title={"Enter MAX points"}
+                    renderContent={() => (
+                        <InputField type={"number"} defaultValue={400} />
+                    )}
+                />
+
+                <ContentContainer
+                    title={"Enter number of players"}
+                    renderContent={() => (
+                        <InputField type={"number"} defaultValue={6} />
+                    )}
+                />
+                {/* <ContentContainer
                     title={"Leaderboard"}
                     renderContent={() => <Leaderboard />}
                 />
 
-                <ContentContainer
-                    title={"Registration is open!"}
-                    renderContent={() => <PlayerSetup />}
-                />
-                <SecondaryButton title={"Add new player"} />
                 <ContentContainer
                     title={"Scoreboard"}
                     renderContent={() => <ScoreBoard />}
@@ -55,7 +64,7 @@ function LandingPage() {
                                 />
                             ))
                     }
-                />
+                /> */}
             </section>
 
             <PrimaryButton title={"Next"} path={"/register"} />

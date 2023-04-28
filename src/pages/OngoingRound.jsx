@@ -1,6 +1,8 @@
 import ContentContainer from "../components/ContentContainer";
+import StartingPlayer from "../components/StartingPlayer";
 import Header from "../components/Header";
 import PrimaryButton from "../components/PrimaryButton";
+import Leaderboard from "../components/Leaderboard";
 
 function OngoingRound() {
     return (
@@ -11,8 +13,16 @@ function OngoingRound() {
                     "When the round is over, click the button at the bottom to continue."
                 }
             />
-            <ContentContainer />
-            <ContentContainer />
+            <ContentContainer
+                title={"Leaderboard"}
+                renderContent={() => <Leaderboard />}
+            />
+
+            <ContentContainer
+                title={"Starting player is:"}
+                renderContent={() => <StartingPlayer />}
+            />
+
             <PrimaryButton title={"Round is over"} path={"/finished-round"} />
         </main>
     );

@@ -2,6 +2,7 @@ import ContentContainer from "../components/ContentContainer";
 import Header from "../components/Header";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
+import PlayerSetup from "../components/PlayerRegister";
 
 function Register() {
     return (
@@ -12,8 +13,11 @@ function Register() {
                     "If you wish to change names click on the name or the edit button"
                 }
             />
-            <ContentContainer />
-            <SecondaryButton />
+            <ContentContainer
+                title={"Registration is open!"}
+                renderContent={() => <PlayerSetup />}
+            />
+            <SecondaryButton title={"Add new player"} />
             <PrimaryButton title={"Players are ready"} path={"/overview"} />
         </main>
     );
