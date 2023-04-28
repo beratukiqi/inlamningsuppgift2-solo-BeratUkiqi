@@ -11,7 +11,10 @@ function PlayerCardBig({ player, bgColor, hasScoreInput }) {
                 <p>{player.name}</p>
             </section>
             {hasScoreInput ? (
-                <InputField type={hasScoreInput ? "number" : "string"} />
+                <InputField
+                    id={player.id}
+                    type={hasScoreInput ? "number" : "string"}
+                />
             ) : (
                 <section className={style.playerCardBig__buttons}>
                     {/* Edit icon */}

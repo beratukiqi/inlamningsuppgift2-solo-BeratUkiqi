@@ -1,13 +1,13 @@
 import PlayerCardBig from "./PlayerCardBig";
 import { useSelector } from "react-redux";
 
-function PlayerRegister({ hasScoreInput, inputType }) {
+function PlayerRegister({ hasScoreInput }) {
     const playerList = useSelector((state) => state.players);
     return (
         <>
-            {playerList.map((player, i) => (
+            {playerList.map((player) => (
                 <PlayerCardBig
-                    key={i}
+                    key={player.id}
                     player={player}
                     bgColor={player.bgColor}
                     hasScoreInput={hasScoreInput}
