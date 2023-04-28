@@ -86,11 +86,17 @@ export const playersSlice = createSlice({
                 state.players[playerIndex].pointsToAdd = newScore;
             }
         },
+
+        addPoints: (state) => {
+            state.players.forEach((player) => {
+                player.points += player.pointsToAdd;
+            });
+        },
     },
 });
 
 // Generar actions från våra reducers
-export const { setPointsToAdd } = playersSlice.actions;
+export const { setPointsToAdd, addPoints } = playersSlice.actions;
 
 // Exportera vår reducer
 export default playersSlice.reducer;
