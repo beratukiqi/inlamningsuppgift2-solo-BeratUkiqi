@@ -1,8 +1,11 @@
 import style from "../styles/components/PlayerCardSmall.module.scss";
 
-function PlayerCardSmall({ player, dangerZone }) {
+function PlayerCardSmall({ player, dangerZone, bgColor }) {
     return (
-        <article className={style.playerCardSmall}>
+        <article
+            className={style.playerCardSmall}
+            style={{ backgroundColor: `${bgColor}` }}
+        >
             <p>{player.name}</p>
             <p>
                 {dangerZone
