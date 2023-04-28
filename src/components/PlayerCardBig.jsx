@@ -1,9 +1,12 @@
 import style from "../styles/components/PlayerCardBig.module.scss";
 
-function PlayerCardBig({ player }) {
+function PlayerCardBig({ player, bgColor }) {
     return (
         <article className={style.playerCardBig}>
-            <section className={style.playerCardBig__name}>
+            <section
+                className={style.playerCardBig__name}
+                style={{ backgroundColor: `${bgColor}` }}
+            >
                 <p>{player.name}</p>
             </section>
             <section className={style.playerCardBig__buttons}>
