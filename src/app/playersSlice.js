@@ -89,7 +89,10 @@ export const playersSlice = createSlice({
 
         addPoints: (state) => {
             state.players.forEach((player) => {
-                player.points += player.pointsToAdd;
+                let newTotal = player.points + player.pointsToAdd;
+                player.points = newTotal;
+                player.pointsHistory.push(newTotal);
+                player.pointsToAdd = 0;
             });
         },
     },
