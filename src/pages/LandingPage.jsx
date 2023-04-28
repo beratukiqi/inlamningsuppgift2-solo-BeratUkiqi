@@ -7,6 +7,7 @@ import PlayerCardBig from "../components/PlayerCardBig";
 import ScoreBoard from "../components/ScoreBoard";
 import Leaderboard from "../components/Leaderboard";
 import PlayerSetup from "../components/PlayerSetup";
+import SecondaryButton from "../components/SecondaryButton";
 
 const player = {
     name: "Berat",
@@ -38,6 +39,7 @@ function LandingPage() {
                     title={"Registration is open!"}
                     renderContent={() => <PlayerSetup />}
                 />
+                <SecondaryButton title={"Add new player"} />
                 <ContentContainer
                     title={"Scoreboard"}
                     renderContent={() => <ScoreBoard />}

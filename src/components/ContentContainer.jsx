@@ -21,7 +21,7 @@ function ContentContainer({ title, renderContent }) {
                     />
                 </svg>
             </header>
-            {renderContent()}
+            {renderContent && renderContent()}
         </section>
     );
 }

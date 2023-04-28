@@ -1,3 +1,5 @@
+import style from "../styles/components/PrimaryButton.module.scss";
+
 import { useNavigate } from "react-router-dom";
 
 function PrimaryButton({ path, title, action }) {
@@ -8,7 +10,11 @@ function PrimaryButton({ path, title, action }) {
         navigate(path); // Navigates to the next page
     };
 
-    return <button onClick={handleClick}>{title}</button>;
+    return (
+        <button className={style.PrimaryButton} onClick={handleClick}>
+            {title}
+        </button>
+    );
 }
 
 export default PrimaryButton;

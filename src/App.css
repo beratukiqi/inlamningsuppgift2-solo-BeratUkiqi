@@ -10,4 +10,5 @@
     width: 100%;
     gap: 0.5rem;
     overflow: scroll;
+    gap: 1rem;
 }
