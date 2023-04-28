@@ -1,10 +1,14 @@
 import style from "../styles/components/PlayerCardSmall.module.scss";
 
-function PlayerCardSmall({ player }) {
+function PlayerCardSmall({ player, dangerZone }) {
     return (
         <article className={style.playerCardSmall}>
             <p>{player.name}</p>
-            <p>{player.points}</p>
+            <p>
+                {dangerZone
+                    ? player.pointsLeft + " points left"
+                    : player.points}
+            </p>
         </article>
     );
 }
