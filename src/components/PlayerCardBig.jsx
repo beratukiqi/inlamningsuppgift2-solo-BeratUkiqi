@@ -1,7 +1,21 @@
 import style from "../styles/components/PlayerCardBig.module.scss";
 import InputField from "./InputField";
+import { setPointsToAdd } from "../app/playersSlice";
+import { useDispatch } from "react-redux";
 
 function PlayerCardBig({ player, bgColor, hasScoreInput }) {
+    const dispatch = useDispatch();
+
+    const handleInputPoints = (e) => {
+        let inputValue = e.target.value;
+        if (inputValue === "") {
+            inputValue = 0;
+        }
+        const newScore = parseInt(inputValue);
+
+        dispatch(setPointsToAdd({ playerId: player.id, newScore: newScore }));
+    };
+
     return (
         <article className={style.playerCardBig}>
             <section
@@ -14,6 +28,7 @@ function PlayerCardBig({ player, bgColor, hasScoreInput }) {
                 <InputField
                     id={player.id}
                     type={hasScoreInput ? "number" : "string"}
+                    onBlur={handleInputPoints}
                 />
             ) : (
                 <section className={style.playerCardBig__buttons}>

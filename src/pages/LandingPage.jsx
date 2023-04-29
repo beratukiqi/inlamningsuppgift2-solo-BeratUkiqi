@@ -10,10 +10,22 @@ import PlayerSetup from "../components/PlayerRegister";
 import SecondaryButton from "../components/SecondaryButton";
 import { useSelector } from "react-redux";
 import InputField from "../components/InputField";
+import { useDispatch } from "react-redux";
+import { changeMaxPoints } from "../app/gameSettingsSlice";
 
 function LandingPage() {
-    const playerList = useSelector((state) => state.players);
+    const gameSettings = useSelector((state) => state.gameSettings);
+    const dispatch = useDispatch();
 
+    const handleMaxPoints = (e) => {
+        let inputValue = e.target.value;
+        if (inputValue === "") {
+            inputValue = 0;
+        }
+        const newMaxPoints = parseInt(inputValue);
+
+        dispatch(changeMaxPoints({ newMaxPoints }));
+    };
     return (
         <main>
             <Header title={"Let’s set up some things before we start!"} />
@@ -29,7 +41,11 @@ function LandingPage() {
                 <ContentContainer
                     title={"Enter MAX points"}
                     renderContent={() => (
-                        <InputField type={"number"} defaultValue={400} />
+                        <InputField
+                            type={"number"}
+                            defaultValue={gameSettings.maxPoints}
+                            onBlur={handleMaxPoints}
+                        />
                     )}
                 />
 

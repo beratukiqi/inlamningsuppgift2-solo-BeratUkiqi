@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 function ScoreBoard() {
     const playerList = useSelector((state) => state.players);
-
     const noOfPlayers = playerList.length;
 
     return (

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setPointsToAdd } from "../app/playersSlice";
 
-function InputField({ type, defaultValue, id }) {
+function InputField({ type, defaultValue, id, onBlur }) {
     const dispatch = useDispatch();
 
     const handleScoreChange = (e) => {
@@ -14,6 +14,7 @@ function InputField({ type, defaultValue, id }) {
         }
         dispatch(setPointsToAdd({ playerId: id, newScore: newScore }));
     };
+
     const invalidChars = ["e", ".", ",", "+"];
 
     return (
@@ -22,7 +23,7 @@ function InputField({ type, defaultValue, id }) {
             className="inputFieldBig"
             type={type}
             defaultValue={defaultValue}
-            onBlur={handleScoreChange}
+            onBlur={onBlur}
             onKeyDown={(e) => {
                 // Handles unwanted symbols for player score input
                 if (type === "number" && invalidChars.includes(e.key)) {

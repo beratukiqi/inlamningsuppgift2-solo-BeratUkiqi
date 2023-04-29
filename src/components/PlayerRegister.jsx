@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 function PlayerRegister({ hasScoreInput }) {
     const playerList = useSelector((state) => state.players);
+
     return (
         <>
             {playerList.map((player) => (
