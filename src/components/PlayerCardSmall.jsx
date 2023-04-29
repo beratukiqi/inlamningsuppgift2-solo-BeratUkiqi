@@ -1,6 +1,9 @@
 import style from "../styles/components/PlayerCardSmall.module.scss";
+import { useSelector } from "react-redux";
 
 function PlayerCardSmall({ player, dangerZone, bgColor }) {
+    const gameSettings = useSelector((state) => state.gameSettings);
+
     return (
         <article
             className={style.playerCardSmall}
@@ -9,7 +12,7 @@ function PlayerCardSmall({ player, dangerZone, bgColor }) {
             <p>{player.name}</p>
             <p>
                 {dangerZone
-                    ? player.pointsLeft + " points left"
+                    ? gameSettings.maxPoints - player.points + " points left"
                     : player.points}
             </p>
         </article>

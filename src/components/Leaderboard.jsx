@@ -6,7 +6,7 @@ function Leaderboard() {
     return (
         <>
             {[...playerList]
-                .sort((a, b) => b.pointsLeft - a.pointsLeft)
+                .sort((a, b) => a.points - b.points)
                 .map((player, i) => (
                     <PlayerCardSmall
                         key={i}

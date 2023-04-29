@@ -9,6 +9,7 @@ import StartingPlayer from "../components/StartingPlayer";
 
 function Overview() {
     const playerList = useSelector((state) => state.players);
+    const gameSettings = useSelector((state) => state.gameSettings);
 
     return (
         <main>
@@ -29,19 +30,29 @@ function Overview() {
             />
             <ContentContainer
                 title={"Danger Zone!"}
-                renderContent={() =>
+                renderContent={
+                    () => {
+                        const playersInDangerZone = playerList
+                            .filter(
+                                (player) =>
+                                    gameSettings.maxPoints - player.points <=
+                                    100
+                            )
+                            .sort((a, b) => b.points - a.points);
+                        return playersInDangerZone.length > 0 ? (
+                            playersInDangerZone.map((player, i) => (
+                                <PlayerCardSmall
+                                    key={i}
+                                    player={player}
+                                    dangerZone={true}
+                                    bgColor={player.bgColor}
+                                />
+                            ))
+                        ) : (
+                            <p>No player in danger...for now</p>
+                        );
+                    }
                     // Renders players with < 100 points left in asc order
-                    playerList
-                        .filter((player) => player.pointsLeft <= 100)
-                        .sort((a, b) => a.pointsLeft - b.pointsLeft)
-                        .map((player, i) => (
-                            <PlayerCardSmall
-                                key={i}
-                                player={player}
-                                dangerZone={true}
-                                bgColor={player.bgColor}
-                            />
-                        ))
                 }
             />
             <ContentContainer

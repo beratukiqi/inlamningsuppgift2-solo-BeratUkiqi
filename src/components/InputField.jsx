@@ -1,20 +1,4 @@
-import { useDispatch } from "react-redux";
-import { setPointsToAdd } from "../app/playersSlice";
-
 function InputField({ type, defaultValue, id, onBlur }) {
-    const dispatch = useDispatch();
-
-    const handleScoreChange = (e) => {
-        let inputValue = e.target.value;
-        if (inputValue === "") {
-            inputValue = 0;
-        }
-        const newScore = parseInt(inputValue);
-        if (newScore === NaN) {
-        }
-        dispatch(setPointsToAdd({ playerId: id, newScore: newScore }));
-    };
-
     const invalidChars = ["e", ".", ",", "+"];
 
     return (

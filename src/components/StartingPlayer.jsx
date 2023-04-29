@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 function StartingPlayer() {
     const playerList = useSelector((state) => state.players);
     const startingPlayer = [...playerList].sort(
-        (a, b) => a.pointsLeft - b.pointsLeft
+        (a, b) => b.points - a.points
     )[0];
 
     return (

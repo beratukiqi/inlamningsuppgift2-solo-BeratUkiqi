@@ -55,32 +55,6 @@ function LandingPage() {
                         <InputField type={"number"} defaultValue={6} />
                     )}
                 />
-                {/* <ContentContainer
-                    title={"Leaderboard"}
-                    renderContent={() => <Leaderboard />}
-                />
-
-                <ContentContainer
-                    title={"Scoreboard"}
-                    renderContent={() => <ScoreBoard />}
-                />
-                <ContentContainer
-                    title={"Danger Zone!"}
-                    renderContent={() =>
-                        // Renders players with < 100 points left in asc order
-                        playerList
-                            .filter((player) => player.pointsLeft <= 100)
-                            .sort((a, b) => a.pointsLeft - b.pointsLeft)
-                            .map((player, i) => (
-                                <PlayerCardSmall
-                                    key={i}
-                                    player={player}
-                                    dangerZone={true}
-                                    bgColor={player.bgColor}
-                                />
-                            ))
-                    }
-                /> */}
             </section>
 
             <PrimaryButton title={"Next"} path={"/register"} />
