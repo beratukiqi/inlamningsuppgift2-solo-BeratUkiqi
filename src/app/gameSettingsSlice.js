@@ -14,11 +14,15 @@ export const gameSettingsSlice = createSlice({
             const { newMaxPoints } = action.payload;
             state.maxPoints = newMaxPoints;
         },
+        changeNoOfPlayers: (state, action) => {
+            const newNoOfPlayers = action.payload;
+            state.noOfPlayers = newNoOfPlayers;
+        },
     },
 });
 
 // Generar actions från våra reducers
-export const { changeMaxPoints } = gameSettingsSlice.actions;
+export const { changeMaxPoints, changeNoOfPlayers } = gameSettingsSlice.actions;
 
 // Exportera vår reducer
 export default gameSettingsSlice.reducer;

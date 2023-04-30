@@ -1,6 +1,6 @@
 import style from "../styles/components/PlayerCardBig.module.scss";
 import InputField from "./InputField";
-import { setPointsToAdd } from "../app/playersSlice";
+import { setPointsToAdd, removePlayer } from "../app/playersSlice";
 import { useDispatch } from "react-redux";
 
 function PlayerCardBig({ player, bgColor, hasScoreInput }) {
@@ -14,6 +14,10 @@ function PlayerCardBig({ player, bgColor, hasScoreInput }) {
         const newScore = parseInt(inputValue);
 
         dispatch(setPointsToAdd({ playerId: player.id, newScore: newScore }));
+    };
+
+    const handleDelete = () => {
+        dispatch(removePlayer(player.id));
     };
 
     return (
@@ -61,6 +65,7 @@ function PlayerCardBig({ player, bgColor, hasScoreInput }) {
 
                     {/* Delete icon */}
                     <svg
+                        onClick={handleDelete}
                         width="26"
                         height="25"
                         viewBox="0 0 26 25"

@@ -11,11 +11,12 @@ import SecondaryButton from "../components/SecondaryButton";
 import { useSelector } from "react-redux";
 import InputField from "../components/InputField";
 import { useDispatch } from "react-redux";
-import { changeMaxPoints } from "../app/gameSettingsSlice";
+import { changeMaxPoints, changeNoOfPlayers } from "../app/gameSettingsSlice";
+import { generatePlayer } from "../app/playersSlice";
 
 function LandingPage() {
-    const gameSettings = useSelector((state) => state.gameSettings);
     const dispatch = useDispatch();
+    const gameSettings = useSelector((state) => state.gameSettings);
 
     const handleMaxPoints = (e) => {
         let inputValue = e.target.value;
@@ -26,6 +27,31 @@ function LandingPage() {
 
         dispatch(changeMaxPoints({ newMaxPoints }));
     };
+
+    const handleNoOfPlayers = (e) => {
+        let inputValue = e.target.value;
+        if (inputValue === "") {
+            inputValue = gameSettings.noOfPlayers;
+        }
+        const noOfPlayers = parseInt(inputValue);
+
+        dispatch(changeNoOfPlayers(noOfPlayers));
+    };
+
+    const generatePlayers = () => {
+        for (let i = 0; i < gameSettings.noOfPlayers; i++) {
+            const newPlayer = {
+                id: i,
+                name: "Player " + i,
+                bgColor: "#A5E9B4",
+                points: 0,
+                pointsToAdd: 0,
+                pointsHistory: [0],
+            };
+            dispatch(generatePlayer(newPlayer));
+        }
+    };
+
     return (
         <main>
             <Header title={"Let’s set up some things before we start!"} />
@@ -52,12 +78,20 @@ function LandingPage() {
                 <ContentContainer
                     title={"Enter number of players"}
                     renderContent={() => (
-                        <InputField type={"number"} defaultValue={6} />
+                        <InputField
+                            type={"number"}
+                            defaultValue={gameSettings.noOfPlayers}
+                            onBlur={handleNoOfPlayers}
+                        />
                     )}
                 />
             </section>
 
-            <PrimaryButton title={"Next"} path={"/register"} />
+            <PrimaryButton
+                title={"Next"}
+                path={"/register"}
+                action={generatePlayers}
+            />
         </main>
     );
 }

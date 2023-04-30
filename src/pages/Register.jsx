@@ -2,7 +2,7 @@ import ContentContainer from "../components/ContentContainer";
 import Header from "../components/Header";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
-import PlayerSetup from "../components/PlayerRegister";
+import PlayerRegister from "../components/PlayerRegister";
 
 function Register() {
     return (
@@ -15,7 +15,7 @@ function Register() {
             />
             <ContentContainer
                 title={"Registration is open!"}
-                renderContent={() => <PlayerSetup />}
+                renderContent={() => <PlayerRegister />}
             />
             <SecondaryButton title={"Add new player"} />
             <PrimaryButton title={"Players are ready"} path={"/overview"} />
