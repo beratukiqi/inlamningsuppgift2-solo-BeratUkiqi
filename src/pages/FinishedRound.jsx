@@ -18,7 +18,12 @@ function FinishedRound() {
             />
             <ContentContainer
                 title={"Add the player points"}
-                renderContent={() => <PlayerRegister hasScoreInput={true} />}
+                renderContent={() => (
+                    <PlayerRegister
+                        hasScoreInput={true}
+                        hasEditableNames={false}
+                    />
+                )}
             />
             <PrimaryButton
                 action={handleClick}

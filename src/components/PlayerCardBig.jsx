@@ -9,7 +9,7 @@ import { changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 
-function PlayerCardBig({ player, bgColor, hasScoreInput }) {
+function PlayerCardBig({ player, bgColor, hasScoreInput, hasEditableNames }) {
     const dispatch = useDispatch();
     const [inputVisible, setInputVisible] = useState(false);
     const inputRef = useRef(null);
@@ -56,7 +56,7 @@ function PlayerCardBig({ player, bgColor, hasScoreInput }) {
     return (
         <article className={style.playerCardBig}>
             <section
-                onClick={handleShowEdit}
+                onClick={hasEditableNames ? handleShowEdit : null}
                 className={style.playerCardBig__name}
                 style={{ backgroundColor: `${bgColor}` }}
             >

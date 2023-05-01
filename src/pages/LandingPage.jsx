@@ -50,7 +50,7 @@ function LandingPage() {
                 bgColor: "#A5E9B4",
                 points: 0,
                 pointsToAdd: 0,
-                pointsHistory: [0],
+                pointsHistory: [],
             };
             dispatch(generatePlayer(newPlayer));
         }

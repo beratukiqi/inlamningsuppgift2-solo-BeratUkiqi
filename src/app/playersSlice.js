@@ -76,6 +76,23 @@ export const playersSlice = createSlice({
             });
         },
 
+        editPoints: (state, action) => {
+            const { playerId, newScore } = action.payload;
+            const playerIndex = state.findIndex(
+                (player) => player.id === playerId
+            );
+            const lastPointIndex = state[playerIndex].pointsHistory.length;
+
+            if (playerIndex > -1) {
+                state[playerIndex].pointsHistory[lastPointIndex - 1] = newScore;
+                state[playerIndex].points = newScore;
+            }
+            console.log(
+                state[playerIndex].pointsHistory[lastPointIndex - 1],
+                "Targeted thing to change"
+            );
+        },
+
         generatePlayer: (state, action) => {
             const newPlayer = action.payload;
             state.push(newPlayer);
@@ -110,6 +127,7 @@ export const {
     generatePlayer,
     removePlayer,
     changePlayerName,
+    editPoints,
 } = playersSlice.actions;
 
 // Exportera vår reducer

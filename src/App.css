@@ -9,7 +9,7 @@
     display: grid;
     width: 100%;
     overflow-x: auto;
-    gap: 1.1rem;
+    gap: 1rem;
 }
 
 .inputFieldBig {
@@ -36,4 +36,17 @@
     background-color: rgb(228, 233, 239);
     position: absolute;
     flex-grow: 1;
+}
+
+.tinyEditPointInput {
+    position: absolute;
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 5rem;
+    border-style: none;
+    bottom: 0;
+    background-color: rgb(228, 233, 239);
 }

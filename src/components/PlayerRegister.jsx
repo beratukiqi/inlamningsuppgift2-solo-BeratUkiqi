@@ -1,7 +1,7 @@
 import PlayerCardBig from "./PlayerCardBig";
 import { useSelector } from "react-redux";
 
-function PlayerRegister({ hasScoreInput }) {
+function PlayerRegister({ hasScoreInput, hasEditableNames }) {
     const playerList = useSelector((state) => state.players);
 
     return (
@@ -12,6 +12,7 @@ function PlayerRegister({ hasScoreInput }) {
                     player={player}
                     bgColor={player.bgColor}
                     hasScoreInput={hasScoreInput}
+                    hasEditableNames={hasEditableNames}
                 />
             ))}
         </>
