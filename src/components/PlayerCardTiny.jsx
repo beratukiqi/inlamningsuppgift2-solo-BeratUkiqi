@@ -40,9 +40,7 @@ function PlayerCardTiny({ player, bgColor }) {
                 {playerInitials}
             </p>
             {player.pointsHistory.length < 1 ? (
-                <p className={style.playerCardTiny__point} key={player.name}>
-                    {player.points}
-                </p>
+                <p className={style.playerCardTiny__point}>{player.points}</p>
             ) : (
                 player.pointsHistory.map((point, i) => {
                     const isLastElement = i === player.pointsHistory.length - 1;
@@ -60,7 +58,6 @@ function PlayerCardTiny({ player, bgColor }) {
                             )}
                             <p
                                 className={style.playerCardTiny__point}
-                                key={i}
                                 onClick={isLastElement ? handleClick : null}
                             >
                                 {point}

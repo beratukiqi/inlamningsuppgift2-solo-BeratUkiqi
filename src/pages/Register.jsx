@@ -7,6 +7,7 @@ import { changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { generatePlayer } from "../app/playersSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import HeaderMenu from "../components/HeaderMenu";
 
 function Register() {
     const dispatch = useDispatch();
@@ -26,20 +27,26 @@ function Register() {
         dispatch(generatePlayer(newPlayer));
     };
     return (
-        <main>
-            <Header
-                title={"You have been given superhero names! "}
-                subTitle={
-                    "If you wish to change names click on the name or the edit button"
-                }
-            />
-            <ContentContainer
-                title={"Registration is open!"}
-                renderContent={() => <PlayerRegister />}
-            />
-            <SecondaryButton title={"Add new player"} action={addNewPlayer} />
-            <PrimaryButton title={"Players are ready"} path={"/overview"} />
-        </main>
+        <>
+            <HeaderMenu />
+            <main>
+                <Header
+                    title={"You have been given superhero names! "}
+                    subTitle={
+                        "If you wish to change names click on the name or the edit button"
+                    }
+                />
+                <ContentContainer
+                    title={"Registration is open!"}
+                    renderContent={() => <PlayerRegister />}
+                />
+                <SecondaryButton
+                    title={"Add new player"}
+                    action={addNewPlayer}
+                />
+                <PrimaryButton title={"Players are ready"} path={"/overview"} />
+            </main>
+        </>
     );
 }
 

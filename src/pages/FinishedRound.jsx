@@ -4,6 +4,8 @@ import PlayerRegister from "../components/PlayerRegister";
 import PrimaryButton from "../components/PrimaryButton";
 import { useDispatch } from "react-redux";
 import { addPoints } from "../app/playersSlice";
+import HeaderMenu from "../components/HeaderMenu";
+
 function FinishedRound() {
     const dispatch = useDispatch();
 
@@ -11,26 +13,29 @@ function FinishedRound() {
         dispatch(addPoints());
     };
     return (
-        <main>
-            <Header
-                title={"Round is over, count your points!"}
-                subTitle={"Beware of the not so talented mathematicians."}
-            />
-            <ContentContainer
-                title={"Add the player points"}
-                renderContent={() => (
-                    <PlayerRegister
-                        hasScoreInput={true}
-                        hasEditableNames={false}
-                    />
-                )}
-            />
-            <PrimaryButton
-                action={handleClick}
-                title={"Save points"}
-                path={"/overview"}
-            />
-        </main>
+        <>
+            <HeaderMenu />
+            <main>
+                <Header
+                    title={"Round is over, count your points!"}
+                    subTitle={"Beware of the not so talented mathematicians."}
+                />
+                <ContentContainer
+                    title={"Add the player points"}
+                    renderContent={() => (
+                        <PlayerRegister
+                            hasScoreInput={true}
+                            hasEditableNames={false}
+                        />
+                    )}
+                />
+                <PrimaryButton
+                    action={handleClick}
+                    title={"Save points"}
+                    path={"/overview"}
+                />
+            </main>
+        </>
     );
 }
 

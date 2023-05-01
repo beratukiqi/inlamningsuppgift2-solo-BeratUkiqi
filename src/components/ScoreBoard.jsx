@@ -14,7 +14,7 @@ function ScoreBoard() {
         >
             {playerList.map((player, i) => (
                 <PlayerCardTiny
-                    key={i}
+                    key={player.name + i}
                     player={player}
                     bgColor={player.bgColor}
                 />

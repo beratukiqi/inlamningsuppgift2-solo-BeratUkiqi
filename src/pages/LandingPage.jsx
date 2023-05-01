@@ -13,6 +13,7 @@ import InputField from "../components/InputField";
 import { useDispatch } from "react-redux";
 import { changeMaxPoints, changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { generatePlayer } from "../app/playersSlice";
+import HeaderMenu from "../components/HeaderMenu";
 
 function LandingPage() {
     const dispatch = useDispatch();
@@ -57,46 +58,49 @@ function LandingPage() {
     };
 
     return (
-        <main>
-            <Header title={"Let’s set up some things before we start!"} />
-            <section
-                className="contentWrapper"
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                    marginTop: "3rem",
-                }}
-            >
-                <ContentContainer
-                    title={"Enter MAX points"}
-                    renderContent={() => (
-                        <InputField
-                            type={"number"}
-                            defaultValue={gameSettings.maxPoints}
-                            onBlur={handleMaxPoints}
-                        />
-                    )}
-                />
+        <>
+            <HeaderMenu />
+            <main>
+                <Header title={"Let’s set up some things before we start!"} />
+                <section
+                    className="contentWrapper"
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                        marginTop: "3rem",
+                    }}
+                >
+                    <ContentContainer
+                        title={"Enter MAX points"}
+                        renderContent={() => (
+                            <InputField
+                                type={"number"}
+                                defaultValue={gameSettings.maxPoints}
+                                onBlur={handleMaxPoints}
+                            />
+                        )}
+                    />
 
-                <ContentContainer
-                    title={"Enter number of players"}
-                    renderContent={() => (
-                        <InputField
-                            type={"number"}
-                            defaultValue={gameSettings.noOfPlayers}
-                            onBlur={(e) => handleNoOfPlayers(e)}
-                        />
-                    )}
-                />
-            </section>
+                    <ContentContainer
+                        title={"Enter number of players"}
+                        renderContent={() => (
+                            <InputField
+                                type={"number"}
+                                defaultValue={gameSettings.noOfPlayers}
+                                onBlur={(e) => handleNoOfPlayers(e)}
+                            />
+                        )}
+                    />
+                </section>
 
-            <PrimaryButton
-                title={"Next"}
-                path={"/register"}
-                action={generatePlayers}
-            />
-        </main>
+                <PrimaryButton
+                    title={"Next"}
+                    path={"/register"}
+                    action={generatePlayers}
+                />
+            </main>
+        </>
     );
 }
 

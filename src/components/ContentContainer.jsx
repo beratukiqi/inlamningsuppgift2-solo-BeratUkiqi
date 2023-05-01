@@ -15,9 +15,9 @@ function ContentContainer({ title, renderContent }) {
                     <path
                         d="M12 4L6.37778 1L1 4"
                         stroke="#393939"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                     />
                 </svg>
             </header>
