@@ -5,13 +5,16 @@ import {
     removePlayer,
     changePlayerName,
 } from "../app/playersSlice";
-import { useDispatch } from "react-redux";
+import { changeNoOfPlayers } from "../app/gameSettingsSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 
 function PlayerCardBig({ player, bgColor, hasScoreInput }) {
     const dispatch = useDispatch();
     const [inputVisible, setInputVisible] = useState(false);
     const inputRef = useRef(null);
+
+    const gameSettings = useSelector((state) => state.gameSettings);
 
     const handleShowEdit = () => {
         setInputVisible(true);
@@ -47,6 +50,7 @@ function PlayerCardBig({ player, bgColor, hasScoreInput }) {
 
     const handleDelete = () => {
         dispatch(removePlayer(player.id));
+        dispatch(changeNoOfPlayers(gameSettings.noOfPlayers - 1));
     };
 
     return (

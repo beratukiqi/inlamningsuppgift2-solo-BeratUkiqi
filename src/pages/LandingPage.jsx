@@ -39,7 +39,7 @@ function LandingPage() {
     };
 
     const generatePlayers = () => {
-        for (let i = 0; i < gameSettings.noOfPlayers; i++) {
+        for (let i = 1; i <= gameSettings.noOfPlayers; i++) {
             const newPlayer = {
                 id: i,
                 name: "Player " + i,

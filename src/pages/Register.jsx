@@ -15,8 +15,8 @@ function Register() {
         dispatch(changeNoOfPlayers(gameSettings.noOfPlayers + 1));
 
         const newPlayer = {
-            id: "Player " + gameSettings.noOfPlayers,
-            name: "Player " + gameSettings.noOfPlayers,
+            id: "Player " + (gameSettings.noOfPlayers + 1),
+            name: "Player " + (gameSettings.noOfPlayers + 1),
             bgColor: "#A5E9B4",
             points: 0,
             pointsToAdd: 0,
