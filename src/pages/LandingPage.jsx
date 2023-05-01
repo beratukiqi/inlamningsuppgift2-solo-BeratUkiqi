@@ -21,11 +21,13 @@ function LandingPage() {
     const handleMaxPoints = (e) => {
         let inputValue = e.target.value;
         if (inputValue === "") {
-            inputValue = 0;
+            inputValue = gameSettings.maxPoints;
         }
-        const newMaxPoints = parseInt(inputValue);
 
+        const newMaxPoints = parseInt(inputValue);
         dispatch(changeMaxPoints({ newMaxPoints }));
+        e.target.value = newMaxPoints; // Re-Sets value to match game Max Points in case empty
+        e.target.blur();
     };
 
     const handleNoOfPlayers = (e) => {
@@ -33,9 +35,11 @@ function LandingPage() {
         if (inputValue === "") {
             inputValue = gameSettings.noOfPlayers;
         }
-        const noOfPlayers = parseInt(inputValue);
 
+        const noOfPlayers = parseInt(inputValue);
         dispatch(changeNoOfPlayers(noOfPlayers));
+        e.target.value = noOfPlayers; // Re-Sets value to match game Max Points in case empty
+        e.target.blur();
     };
 
     const generatePlayers = () => {
@@ -81,7 +85,7 @@ function LandingPage() {
                         <InputField
                             type={"number"}
                             defaultValue={gameSettings.noOfPlayers}
-                            onBlur={handleNoOfPlayers}
+                            onBlur={(e) => handleNoOfPlayers(e)}
                         />
                     )}
                 />

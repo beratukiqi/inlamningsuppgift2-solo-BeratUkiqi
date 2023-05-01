@@ -18,7 +18,7 @@ function InputField(props, ref) {
                 }
 
                 if (e.key === "Enter") {
-                    onBlur(e);
+                    e.target.blur();
                 }
             }}
             ref={ref}
