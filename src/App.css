@@ -23,3 +23,17 @@
     border-style: none;
     background-color: rgb(228, 233, 239);
 }
+
+.editNameInput {
+    color: rgb(34, 34, 34);
+    height: 3rem;
+    width: 100% !important;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 5rem;
+    border-style: none;
+    background-color: rgb(228, 233, 239);
+    position: absolute;
+    flex-grow: 1;
+}

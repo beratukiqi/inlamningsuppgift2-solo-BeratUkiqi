@@ -94,17 +94,23 @@ export const playersSlice = createSlice({
             const playerIndex = state.findIndex(
                 (player) => player.id === playerId
             );
-
+            console.log(state[playerIndex].name, "Name before edit");
             if (playerIndex > -1) {
                 state[playerIndex].name = newName;
             }
+            console.log(state[playerIndex].name, "Name after edit");
         },
     },
 });
 
 // Generar actions från våra reducers
-export const { setPointsToAdd, addPoints, generatePlayer, removePlayer } =
-    playersSlice.actions;
+export const {
+    setPointsToAdd,
+    addPoints,
+    generatePlayer,
+    removePlayer,
+    changePlayerName,
+} = playersSlice.actions;
 
 // Exportera vår reducer
 export default playersSlice.reducer;
