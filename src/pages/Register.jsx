@@ -8,6 +8,7 @@ import { generatePlayer } from "../app/playersSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import HeaderMenu from "../components/HeaderMenu";
+import style from "../styles/pages/Register.module.scss";
 
 function Register() {
     const dispatch = useDispatch();
@@ -27,28 +28,31 @@ function Register() {
         dispatch(generatePlayer(newPlayer));
     };
     return (
-        <>
+        <section className={style.pageContainer}>
             <HeaderMenu />
-            <main>
+            <main className={style.contentWrapper}>
                 <Header
                     title={"You have been given superhero names! "}
                     subTitle={
-                        "If you wish to change names click on the name or the edit button"
+                        "If you are not feeling like superheroes, change the names by clicking on a player"
                     }
                 />
                 <ContentContainer
                     title={"Registration is open!"}
                     renderContent={() => (
-                        <PlayerRegister hasEditableNames={true} />
+                        <>
+                            <PlayerRegister hasEditableNames={true} />
+                            <SecondaryButton
+                                title={"Add another player"}
+                                action={addNewPlayer}
+                            />
+                        </>
                     )}
                 />
-                <SecondaryButton
-                    title={"Add new player"}
-                    action={addNewPlayer}
-                />
+
                 <PrimaryButton title={"Players are ready"} path={"/overview"} />
             </main>
-        </>
+        </section>
     );
 }
 

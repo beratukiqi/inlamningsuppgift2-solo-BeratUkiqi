@@ -9,6 +9,7 @@ import { generatePlayer } from "../app/playersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderMenu from "../components/HeaderMenu";
 import { useNavigate } from "react-router-dom";
+import style from "../styles/pages/Players.module.scss";
 
 function Players() {
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function Players() {
     };
 
     return (
-        <>
+        <section className={style.pageContainer}>
             <HeaderMenu
                 renderContent={() => (
                     <>
@@ -40,13 +41,27 @@ function Players() {
                     </>
                 )}
             />
-            <h1>Players PAGE</h1>
-            <Header title={"All players"} subTitle={"Add new players or "} />
-            <ContentContainer
-                renderContent={() => <PlayerRegister hasEditableNames={true} />}
-            />
-            <SecondaryButton title={"Add new player"} action={addNewPlayer} />
-        </>
+            <main className={style.contentWrapper}>
+                <Header
+                    title={"All players!"}
+                    subTitle={
+                        "You can easily change the list of players.  remove the weak ones! "
+                    }
+                />
+                <ContentContainer
+                    title={"Currently playing"}
+                    renderContent={() => (
+                        <>
+                            <PlayerRegister hasEditableNames={true} />
+                            <SecondaryButton
+                                title={"Add another player"}
+                                action={addNewPlayer}
+                            />
+                        </>
+                    )}
+                />
+            </main>
+        </section>
     );
 }
 

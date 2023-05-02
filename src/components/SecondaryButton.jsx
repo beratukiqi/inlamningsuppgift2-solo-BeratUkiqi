@@ -8,7 +8,7 @@ function SecondaryButton({ title, action }) {
     return (
         <>
             <button className={style.SecondaryButton} onClick={handleClick}>
-                {title} {/* Add buttom icon */}
+                <p>{title}</p>
                 <svg
                     width="36"
                     height="36"

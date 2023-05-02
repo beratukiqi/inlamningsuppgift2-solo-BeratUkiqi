@@ -6,6 +6,7 @@ import InputField from "../components/InputField";
 import { useDispatch } from "react-redux";
 import { changeMaxPoints, changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { generatePlayer } from "../app/playersSlice";
+import style from "../styles/pages/LandingPage.module.scss";
 
 function LandingPage() {
     const dispatch = useDispatch();
@@ -50,40 +51,30 @@ function LandingPage() {
     };
 
     return (
-        <>
-            <main>
+        <section className={style.pageContainer}>
+            <main className={style.contentWrapper}>
                 <Header title={"Let’s set up some things before we start!"} />
-                <section
-                    className="contentWrapper"
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "1rem",
-                        marginTop: "3rem",
-                    }}
-                >
-                    <ContentContainer
-                        title={"Enter MAX points"}
-                        renderContent={() => (
-                            <InputField
-                                type={"number"}
-                                defaultValue={gameSettings.maxPoints}
-                                onBlur={handleMaxPoints}
-                            />
-                        )}
-                    />
+                <ContentContainer
+                    title={"Enter MAX points"}
+                    renderContent={() => (
+                        <InputField
+                            type={"number"}
+                            defaultValue={gameSettings.maxPoints}
+                            onBlur={handleMaxPoints}
+                        />
+                    )}
+                />
 
-                    <ContentContainer
-                        title={"Enter number of players"}
-                        renderContent={() => (
-                            <InputField
-                                type={"number"}
-                                defaultValue={gameSettings.noOfPlayers}
-                                onBlur={(e) => handleNoOfPlayers(e)}
-                            />
-                        )}
-                    />
-                </section>
+                <ContentContainer
+                    title={"Enter number of players"}
+                    renderContent={() => (
+                        <InputField
+                            type={"number"}
+                            defaultValue={gameSettings.noOfPlayers}
+                            onBlur={(e) => handleNoOfPlayers(e)}
+                        />
+                    )}
+                />
 
                 <PrimaryButton
                     title={"Next"}
@@ -91,7 +82,7 @@ function LandingPage() {
                     action={generatePlayers}
                 />
             </main>
-        </>
+        </section>
     );
 }
 

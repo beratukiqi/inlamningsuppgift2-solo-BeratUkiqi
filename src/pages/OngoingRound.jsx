@@ -6,17 +6,18 @@ import Leaderboard from "../components/Leaderboard";
 import HeaderMenu from "../components/HeaderMenu";
 import BackButtonIcon from "../components/icons/BackButtonIcon";
 import { useNavigate } from "react-router-dom";
+import style from "../styles/pages/OngoingRound.module.scss";
 
 function OngoingRound() {
     const navigate = useNavigate();
     return (
-        <>
+        <section className={style.pageContainer}>
             <HeaderMenu
                 renderContent={() => (
                     <BackButtonIcon onClick={() => navigate(-1)} />
                 )}
             />
-            <main>
+            <main className={style.contentWrapper}>
                 <Header
                     title={"The game is underway, good luck! "}
                     subTitle={
@@ -38,7 +39,7 @@ function OngoingRound() {
                     path={"/finished-round"}
                 />
             </main>
-        </>
+        </section>
     );
 }
 

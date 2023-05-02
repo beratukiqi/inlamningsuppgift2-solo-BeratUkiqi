@@ -7,6 +7,7 @@ import { addPoints } from "../app/playersSlice";
 import HeaderMenu from "../components/HeaderMenu";
 import { useNavigate } from "react-router-dom";
 import BackButtonIcon from "../components/icons/BackButtonIcon";
+import style from "../styles/pages/FinishedRound.module.scss";
 
 function FinishedRound() {
     const dispatch = useDispatch();
@@ -16,13 +17,13 @@ function FinishedRound() {
         dispatch(addPoints());
     };
     return (
-        <>
+        <section className={style.pageContainer}>
             <HeaderMenu
                 renderContent={() => (
                     <BackButtonIcon onClick={() => navigate(-1)} />
                 )}
             />
-            <main>
+            <main className={style.contentWrapper}>
                 <Header
                     title={"Round is over, count your points!"}
                     subTitle={"Beware of the not so talented mathematicians."}
@@ -39,7 +40,7 @@ function FinishedRound() {
                     path={"/overview"}
                 />
             </main>
-        </>
+        </section>
     );
 }
 

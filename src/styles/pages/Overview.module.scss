@@ -11,14 +11,17 @@
         margin-top: 2rem;
 
         & > h2 {
-            margin-top: 1rem;
             font-size: 1.2rem;
         }
 
-        & > header p {
-            max-width: 75%;
-            margin: auto;
-            margin-top: 0.5rem;
+        & > header {
+            margin-bottom: 2rem;
+
+            p {
+                max-width: 75%;
+                margin: auto;
+                margin-top: 0.5rem;
+            }
         }
 
         button {
