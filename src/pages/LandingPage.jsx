@@ -1,19 +1,11 @@
 import Header from "../components/Header";
 import ContentContainer from "../components/ContentContainer";
 import PrimaryButton from "../components/PrimaryButton";
-import PlayerCardSmall from "../components/PlayerCardSmall";
-import PlayerCardTiny from "../components/PlayerCardTiny";
-import PlayerCardBig from "../components/PlayerCardBig";
-import ScoreBoard from "../components/ScoreBoard";
-import Leaderboard from "../components/Leaderboard";
-import PlayerSetup from "../components/PlayerRegister";
-import SecondaryButton from "../components/SecondaryButton";
 import { useSelector } from "react-redux";
 import InputField from "../components/InputField";
 import { useDispatch } from "react-redux";
 import { changeMaxPoints, changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { generatePlayer } from "../app/playersSlice";
-import HeaderMenu from "../components/HeaderMenu";
 
 function LandingPage() {
     const dispatch = useDispatch();
@@ -59,7 +51,6 @@ function LandingPage() {
 
     return (
         <>
-            <HeaderMenu />
             <main>
                 <Header title={"Let’s set up some things before we start!"} />
                 <section

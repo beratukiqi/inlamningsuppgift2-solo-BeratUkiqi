@@ -7,14 +7,25 @@ import PlayerCardSmall from "../components/PlayerCardSmall";
 import { useSelector } from "react-redux";
 import StartingPlayer from "../components/StartingPlayer";
 import HeaderMenu from "../components/HeaderMenu";
+import PlayersIcon from "../components/icons/PlayersIcon";
+import GameSettingsIcon from "../components/icons/GameSettingsIcon";
+import { useNavigate } from "react-router-dom";
 
 function Overview() {
     const playerList = useSelector((state) => state.players);
     const gameSettings = useSelector((state) => state.gameSettings);
+    const navigate = useNavigate();
 
     return (
         <>
-            <HeaderMenu />
+            <HeaderMenu
+                renderContent={() => (
+                    <>
+                        <PlayersIcon onClick={() => navigate("/players")} />
+                        <GameSettingsIcon onClick={() => navigate("/rules")} />
+                    </>
+                )}
+            />
             <main>
                 <Header
                     title={"Game overview!"}

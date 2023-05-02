@@ -38,7 +38,9 @@ function Register() {
                 />
                 <ContentContainer
                     title={"Registration is open!"}
-                    renderContent={() => <PlayerRegister />}
+                    renderContent={() => (
+                        <PlayerRegister hasEditableNames={true} />
+                    )}
                 />
                 <SecondaryButton
                     title={"Add new player"}

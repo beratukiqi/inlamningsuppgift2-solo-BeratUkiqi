@@ -5,16 +5,23 @@ import PrimaryButton from "../components/PrimaryButton";
 import { useDispatch } from "react-redux";
 import { addPoints } from "../app/playersSlice";
 import HeaderMenu from "../components/HeaderMenu";
+import { useNavigate } from "react-router-dom";
+import BackButtonIcon from "../components/icons/BackButtonIcon";
 
 function FinishedRound() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleClick = () => {
         dispatch(addPoints());
     };
     return (
         <>
-            <HeaderMenu />
+            <HeaderMenu
+                renderContent={() => (
+                    <BackButtonIcon onClick={() => navigate(-1)} />
+                )}
+            />
             <main>
                 <Header
                     title={"Round is over, count your points!"}
@@ -23,10 +30,7 @@ function FinishedRound() {
                 <ContentContainer
                     title={"Add the player points"}
                     renderContent={() => (
-                        <PlayerRegister
-                            hasScoreInput={true}
-                            hasEditableNames={false}
-                        />
+                        <PlayerRegister hasScoreInput={true} />
                     )}
                 />
                 <PrimaryButton

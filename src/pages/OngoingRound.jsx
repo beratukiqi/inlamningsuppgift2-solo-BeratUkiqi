@@ -4,11 +4,18 @@ import Header from "../components/Header";
 import PrimaryButton from "../components/PrimaryButton";
 import Leaderboard from "../components/Leaderboard";
 import HeaderMenu from "../components/HeaderMenu";
+import BackButtonIcon from "../components/icons/BackButtonIcon";
+import { useNavigate } from "react-router-dom";
 
 function OngoingRound() {
+    const navigate = useNavigate();
     return (
         <>
-            <HeaderMenu />
+            <HeaderMenu
+                renderContent={() => (
+                    <BackButtonIcon onClick={() => navigate(-1)} />
+                )}
+            />
             <main>
                 <Header
                     title={"The game is underway, good luck! "}
