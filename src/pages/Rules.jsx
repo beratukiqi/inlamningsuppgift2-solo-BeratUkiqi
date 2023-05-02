@@ -154,7 +154,6 @@ function Rules() {
                         </ul>
                     )}
                 />
-                <h1>RULES PAGE</h1>
             </main>
         </section>
     );

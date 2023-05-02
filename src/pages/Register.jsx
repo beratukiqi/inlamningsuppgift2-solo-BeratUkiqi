@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import HeaderMenu from "../components/HeaderMenu";
 import style from "../styles/pages/Register.module.scss";
+import { colorData } from "../app/colorData";
 
 function Register() {
     const dispatch = useDispatch();
@@ -16,10 +17,17 @@ function Register() {
     const addNewPlayer = () => {
         dispatch(changeNoOfPlayers(gameSettings.noOfPlayers + 1));
 
+        let colorList = colorData;
+
+        const generateColor = () => {
+            let chosenIndex = gameSettings.noOfPlayers;
+            return colorList[chosenIndex];
+        };
+
         const newPlayer = {
             id: "Player " + (gameSettings.noOfPlayers + 1),
             name: "Player " + (gameSettings.noOfPlayers + 1),
-            bgColor: "#A5E9B4",
+            bgColor: generateColor(),
             points: 0,
             pointsToAdd: 0,
             pointsHistory: [],

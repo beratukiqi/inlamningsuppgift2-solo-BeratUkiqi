@@ -8,10 +8,12 @@ import Register from "./pages/Register";
 import ErrorPage from "./pages/ErrorPage";
 import Players from "./pages/Players";
 import Rules from "./pages/Rules";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/register" element={<Register />} />

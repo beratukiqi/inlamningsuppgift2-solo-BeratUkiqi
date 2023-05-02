@@ -7,10 +7,18 @@ import { useDispatch } from "react-redux";
 import { changeMaxPoints, changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { generatePlayer } from "../app/playersSlice";
 import style from "../styles/pages/LandingPage.module.scss";
+import { colorData } from "../app/colorData";
 
 function LandingPage() {
     const dispatch = useDispatch();
     const gameSettings = useSelector((state) => state.gameSettings);
+
+    let colorList = colorData;
+
+    const generateColor = (i) => {
+        let chosenIndex = i;
+        return colorList[chosenIndex];
+    };
 
     const handleMaxPoints = (e) => {
         let inputValue = e.target.value;
@@ -41,7 +49,7 @@ function LandingPage() {
             const newPlayer = {
                 id: i,
                 name: "Player " + i,
-                bgColor: "#A5E9B4",
+                bgColor: generateColor(i - 1),
                 points: 0,
                 pointsToAdd: 0,
                 pointsHistory: [],

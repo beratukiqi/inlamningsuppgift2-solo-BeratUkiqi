@@ -3,17 +3,25 @@ import ContentContainer from "../components/ContentContainer";
 import PlayerRegister from "../components/PlayerRegister";
 import SecondaryButton from "../components/SecondaryButton";
 import BackButtonIcon from "../components/icons/BackButtonIcon";
-import CloseButtonIcon from "../components/icons/CloseButtonIcon";
-import { changeNoOfPlayers } from "../app/gameSettingsSlice";
+import { changeNoOfPlayers, changeMaxPoints } from "../app/gameSettingsSlice";
 import { generatePlayer } from "../app/playersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderMenu from "../components/HeaderMenu";
 import { useNavigate } from "react-router-dom";
 import style from "../styles/pages/Players.module.scss";
+import InputField from "../components/InputField";
+import { colorData } from "../app/colorData";
 
 function Players() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    let colorList = colorData;
+
+    const generateRandomColor = () => {
+        let chosenIndex = gameSettings.noOfPlayers;
+        return colorList[chosenIndex];
+    };
 
     const gameSettings = useSelector((state) => state.gameSettings);
 
@@ -23,13 +31,23 @@ function Players() {
         const newPlayer = {
             id: "Player " + (gameSettings.noOfPlayers + 1),
             name: "Player " + (gameSettings.noOfPlayers + 1),
-            bgColor: "#A5E9B4",
+            bgColor: generateRandomColor(),
             points: 0,
             pointsToAdd: 0,
             pointsHistory: [],
         };
-
         dispatch(generatePlayer(newPlayer));
+    };
+
+    const handleMaxPoints = (e) => {
+        let inputValue = e.target.value;
+        if (inputValue === "") {
+            inputValue = gameSettings.maxPoints;
+        }
+        const newMaxPoints = parseInt(inputValue);
+        dispatch(changeMaxPoints({ newMaxPoints }));
+        e.target.value = newMaxPoints; // Re-Sets value to match game Max Points in case empty
+        e.target.blur();
     };
 
     return (
@@ -43,13 +61,11 @@ function Players() {
             />
             <main className={style.contentWrapper}>
                 <Header
-                    title={"All players!"}
-                    subTitle={
-                        "You can easily change the list of players.  remove the weak ones! "
-                    }
+                    title={"Game settings"}
+                    subTitle={"Feel free to tweak things to your likings. "}
                 />
                 <ContentContainer
-                    title={"Currently playing"}
+                    title={"Players"}
                     renderContent={() => (
                         <>
                             <PlayerRegister hasEditableNames={true} />
@@ -58,6 +74,16 @@ function Players() {
                                 action={addNewPlayer}
                             />
                         </>
+                    )}
+                />
+                <ContentContainer
+                    title={"MAX points"}
+                    renderContent={() => (
+                        <InputField
+                            type={"number"}
+                            defaultValue={gameSettings.maxPoints}
+                            onBlur={handleMaxPoints}
+                        />
                     )}
                 />
             </main>
