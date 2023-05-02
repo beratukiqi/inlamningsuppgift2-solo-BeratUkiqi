@@ -3,21 +3,21 @@ import Header from "../components/Header";
 import PrimaryButton from "../components/PrimaryButton";
 import Leaderboard from "../components/Leaderboard";
 import ScoreBoard from "../components/ScoreBoard";
-import PlayerCardSmall from "../components/PlayerCardSmall";
-import { useSelector } from "react-redux";
 import StartingPlayer from "../components/StartingPlayer";
 import HeaderMenu from "../components/HeaderMenu";
 import PlayersIcon from "../components/icons/PlayersIcon";
 import GameSettingsIcon from "../components/icons/GameSettingsIcon";
 import { useNavigate } from "react-router-dom";
+import DangerZone from "../components/DangerZone";
+import { useSelector } from "react-redux";
+import style from "../styles/pages/Overview.module.scss";
 
 function Overview() {
-    const playerList = useSelector((state) => state.players);
-    const gameSettings = useSelector((state) => state.gameSettings);
     const navigate = useNavigate();
+    const gameSettings = useSelector((state) => state.gameSettings);
 
     return (
-        <>
+        <section className={style.pageContainer}>
             <HeaderMenu
                 renderContent={() => (
                     <>
@@ -26,13 +26,14 @@ function Overview() {
                     </>
                 )}
             />
-            <main>
+            <main className={style.contentWrapper}>
                 <Header
                     title={"Game overview!"}
                     subTitle={
                         "Keep track of who is in the lead and who to target together! "
                     }
                 />
+                <h2>Max points: {gameSettings.maxPoints}</h2>
                 <ContentContainer
                     title={"Leaderboard"}
                     renderContent={() => <Leaderboard />}
@@ -45,28 +46,7 @@ function Overview() {
                 <ContentContainer
                     title={"Danger Zone!"}
                     renderContent={
-                        () => {
-                            const playersInDangerZone = playerList
-                                .filter(
-                                    (player) =>
-                                        gameSettings.maxPoints -
-                                            player.points <=
-                                        100
-                                )
-                                .sort((a, b) => b.points - a.points);
-                            return playersInDangerZone.length > 0 ? (
-                                playersInDangerZone.map((player, i) => (
-                                    <PlayerCardSmall
-                                        key={i}
-                                        player={player}
-                                        dangerZone={true}
-                                        bgColor={player.bgColor}
-                                    />
-                                ))
-                            ) : (
-                                <p>No player in danger...for now</p>
-                            );
-                        }
+                        () => <DangerZone />
                         // Renders players with < 100 points left in asc order
                     }
                 />
@@ -79,7 +59,7 @@ function Overview() {
                     path={"/ongoing-round"}
                 />
             </main>
-        </>
+        </section>
     );
 }
 

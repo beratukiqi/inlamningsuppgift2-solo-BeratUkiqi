@@ -1,8 +1,43 @@
-@import url("/src/styles/components/PlayerCardSmall.module.scss");
+@import "mixins";
+@import "variables";
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
-#root {
-    margin: 0 auto;
+* {
+    font-family: $font-family-headings;
+    line-height: 1.5;
     text-align: center;
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: $font-size-h1;
+    color: $color-h1;
+    font-family: $font-family-headings;
+    line-height: $line-height-headings;
+}
+
+h2 {
+    font-size: $font-size-h2;
+    color: $color-h2;
+    font-family: $font-family-headings;
+    line-height: $line-height-headings;
+}
+
+h3 {
+    font-size: $font-size-h3;
+    color: $color-h3;
+    font-family: $font-family-headings;
+    line-height: $line-height-headings;
+}
+
+p {
+    font-size: $font-size-paragraph;
+    color: $color-paragraph;
+    font-family: $font-family-paragraph;
+    line-height: $line-height-paragraph;
 }
 
 .scoreboard-container {

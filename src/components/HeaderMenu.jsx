@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
-
 function HeaderMenu({ renderContent }) {
-    const navigate = useNavigate();
     return (
-        <section
+        <nav
             style={{
                 height: "200",
                 display: "flex",
@@ -11,7 +8,7 @@ function HeaderMenu({ renderContent }) {
             }}
         >
             {renderContent && renderContent()}
-        </section>
+        </nav>
     );
 }
 

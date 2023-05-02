@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/main.scss";
 import FinishedRound from "./pages/FinishedRound";
 import LandingPage from "./pages/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
