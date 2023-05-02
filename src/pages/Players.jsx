@@ -11,26 +11,49 @@ import { useNavigate } from "react-router-dom";
 import style from "../styles/pages/Players.module.scss";
 import InputField from "../components/InputField";
 import { colorData } from "../app/colorData";
+import superheroNames from "../app/nameGenData";
 
 function Players() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const gameSettings = useSelector((state) => state.gameSettings);
+    const playerList = useSelector((state) => state.players);
 
     let colorList = colorData;
+    let superHeroNameList = superheroNames;
+
+    const superheroNameGenerator = () => {
+        let firstIndex = Math.floor(
+            Math.random() * superHeroNameList.first.length
+        );
+        let firstName = superHeroNameList.first[firstIndex];
+        let secondIndex = Math.floor(
+            Math.random() * superHeroNameList.second.length
+        );
+        let secondName = superHeroNameList.second[secondIndex];
+        let fullName = firstName + " " + secondName;
+
+        // Generates a new name if name already exists
+        playerList.forEach((player) => {
+            if (player.name === fullName) {
+                console.log("Matched names, changing name");
+                fullName = superheroNameGenerator();
+            }
+        });
+        return fullName;
+    };
 
     const generateRandomColor = () => {
         let chosenIndex = gameSettings.noOfPlayers;
         return colorList[chosenIndex];
     };
 
-    const gameSettings = useSelector((state) => state.gameSettings);
-
     const addNewPlayer = () => {
         dispatch(changeNoOfPlayers(gameSettings.noOfPlayers + 1));
-
+        const name = superheroNameGenerator();
         const newPlayer = {
-            id: "Player " + (gameSettings.noOfPlayers + 1),
-            name: "Player " + (gameSettings.noOfPlayers + 1),
+            id: name,
+            name: name,
             bgColor: generateRandomColor(),
             points: 0,
             pointsToAdd: 0,

@@ -10,23 +10,49 @@ import { useSelector } from "react-redux";
 import HeaderMenu from "../components/HeaderMenu";
 import style from "../styles/pages/Register.module.scss";
 import { colorData } from "../app/colorData";
+import superheroNames from "../app/nameGenData";
 
 function Register() {
     const dispatch = useDispatch();
     const gameSettings = useSelector((state) => state.gameSettings);
+    const playerList = useSelector((state) => state.players);
+
+    let colorList = colorData;
+    let superHeroNameList = superheroNames;
+
+    const generateColor = () => {
+        let chosenIndex = gameSettings.noOfPlayers;
+        return colorList[chosenIndex];
+    };
+
+    const superheroNameGenerator = () => {
+        let firstIndex = Math.floor(
+            Math.random() * superHeroNameList.first.length
+        );
+        let firstName = superHeroNameList.first[firstIndex];
+        let secondIndex = Math.floor(
+            Math.random() * superHeroNameList.second.length
+        );
+        let secondName = superHeroNameList.second[secondIndex];
+        let fullName = firstName + " " + secondName;
+
+        // Generates a new name if name already exists
+        playerList.forEach((player) => {
+            if (player.name === fullName) {
+                console.log("Matched names, changing name");
+                fullName = superheroNameGenerator();
+            }
+        });
+
+        return fullName;
+    };
+
     const addNewPlayer = () => {
         dispatch(changeNoOfPlayers(gameSettings.noOfPlayers + 1));
-
-        let colorList = colorData;
-
-        const generateColor = () => {
-            let chosenIndex = gameSettings.noOfPlayers;
-            return colorList[chosenIndex];
-        };
-
+        const name = superheroNameGenerator();
         const newPlayer = {
-            id: "Player " + (gameSettings.noOfPlayers + 1),
-            name: "Player " + (gameSettings.noOfPlayers + 1),
+            id: name,
+            name: name,
             bgColor: generateColor(),
             points: 0,
             pointsToAdd: 0,

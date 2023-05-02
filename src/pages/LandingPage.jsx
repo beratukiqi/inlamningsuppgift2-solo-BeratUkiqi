@@ -8,12 +8,28 @@ import { changeMaxPoints, changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { generatePlayer } from "../app/playersSlice";
 import style from "../styles/pages/LandingPage.module.scss";
 import { colorData } from "../app/colorData";
+import superheroNames from "../app/nameGenData";
 
 function LandingPage() {
     const dispatch = useDispatch();
     const gameSettings = useSelector((state) => state.gameSettings);
 
     let colorList = colorData;
+    let superHeroNameList = superheroNames;
+
+    const superheroNameGenerator = () => {
+        let firstIndex = Math.floor(
+            Math.random() * superHeroNameList.first.length
+        );
+        let firstName = superHeroNameList.first[firstIndex];
+        let secondIndex = Math.floor(
+            Math.random() * superHeroNameList.second.length
+        );
+        let secondName = superHeroNameList.second[secondIndex];
+        let fullName = firstName + " " + secondName;
+
+        return fullName;
+    };
 
     const generateColor = (i) => {
         let chosenIndex = i;
@@ -46,9 +62,10 @@ function LandingPage() {
 
     const generatePlayers = () => {
         for (let i = 1; i <= gameSettings.noOfPlayers; i++) {
+            const name = superheroNameGenerator();
             const newPlayer = {
-                id: i,
-                name: "Player " + i,
+                id: name + i,
+                name: name,
                 bgColor: generateColor(i - 1),
                 points: 0,
                 pointsToAdd: 0,
