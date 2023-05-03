@@ -1,7 +1,8 @@
 import { forwardRef } from "react";
 
 function InputField(props, ref) {
-    const { type, defaultValue, id, onBlur, className } = props;
+    const { type, defaultValue, id, onBlur, className, pattern, inputmode } =
+        props;
     const invalidChars = ["e", ".", ",", "+"];
 
     return (
@@ -22,6 +23,8 @@ function InputField(props, ref) {
                 }
             }}
             ref={ref}
+            pattern={pattern}
+            inputMode={inputmode}
         />
     );
 }

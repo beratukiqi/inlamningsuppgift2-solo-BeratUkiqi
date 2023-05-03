@@ -9,10 +9,12 @@ import { generatePlayer } from "../app/playersSlice";
 import style from "../styles/pages/LandingPage.module.scss";
 import { colorData } from "../app/colorData";
 import superheroNames from "../app/nameGenData";
+import { useRef } from "react";
 
 function LandingPage() {
     const dispatch = useDispatch();
     const gameSettings = useSelector((state) => state.gameSettings);
+    const inputRef = useRef(null);
 
     let colorList = colorData;
     let superHeroNameList = superheroNames;
@@ -75,6 +77,12 @@ function LandingPage() {
         }
     };
 
+    function handleNegativeButton() {
+        const inputValue = Number(inputRef.current.value);
+        inputRef.current.value = -inputValue;
+        console.log("CLICK");
+    }
+
     return (
         <section className={style.pageContainer}>
             <main className={style.contentWrapper}>
@@ -82,11 +90,20 @@ function LandingPage() {
                 <ContentContainer
                     title={"Enter MAX points"}
                     renderContent={() => (
-                        <InputField
-                            type={"number"}
-                            defaultValue={gameSettings.maxPoints}
-                            onBlur={handleMaxPoints}
-                        />
+                        <>
+                            <InputField
+                                type={"number"}
+                                defaultValue={gameSettings.maxPoints}
+                                onBlur={handleMaxPoints}
+                                inputmode={"numeric"}
+                                pattern={"[d+-]"}
+                                ref={inputRef}
+                            />
+                            <button onClick={handleNegativeButton}>
+                                Negate
+                            </button>
+                        </>
+                        // Wish to have a button here
                     )}
                 />
 
@@ -97,6 +114,7 @@ function LandingPage() {
                             type={"number"}
                             defaultValue={gameSettings.noOfPlayers}
                             onBlur={(e) => handleNoOfPlayers(e)}
+                            pattern={"d*"}
                         />
                     )}
                 />

@@ -9,7 +9,13 @@ import { changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 
-function PlayerCardBig({ player, bgColor, hasScoreInput, hasEditableNames }) {
+function PlayerCardBig({
+    player,
+    bgColor,
+    hasScoreInput,
+    hasEditableNames,
+    uniqueRef,
+}) {
     const dispatch = useDispatch();
     const [inputVisible, setInputVisible] = useState(false);
     const inputRef = useRef(null);
@@ -43,9 +49,12 @@ function PlayerCardBig({ player, bgColor, hasScoreInput, hasEditableNames }) {
         if (inputValue === "") {
             inputValue = 0;
         }
-        const newScore = parseInt(inputValue);
-
-        dispatch(setPointsToAdd({ playerId: player.id, newScore: newScore }));
+        dispatch(
+            setPointsToAdd({
+                playerId: player.id,
+                newScore: parseInt(inputValue),
+            })
+        );
     };
 
     const handleDelete = () => {
@@ -67,7 +76,7 @@ function PlayerCardBig({ player, bgColor, hasScoreInput, hasEditableNames }) {
                     type={"text"}
                     className={"editNameInput"}
                     onBlur={handleNameChange}
-                    ref={inputRef}
+                    ref={uniqueRef}
                     defaultValue={player.name}
                 />
             )}
@@ -76,6 +85,7 @@ function PlayerCardBig({ player, bgColor, hasScoreInput, hasEditableNames }) {
                     id={player.id}
                     type={hasScoreInput ? "number" : "string"}
                     onBlur={handleInputPoints}
+                    ref={uniqueRef}
                 />
             ) : (
                 <section className={style.playerCardBig__buttons}>
