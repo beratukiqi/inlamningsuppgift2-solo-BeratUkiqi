@@ -13,12 +13,29 @@ import InputField from "../components/InputField";
 import { colorData } from "../app/colorData";
 import superheroNames from "../app/nameGenData";
 import PrimaryButton from "../components/PrimaryButton";
+import { shufflePlayerList } from "../app/playersSlice";
+import ShuffleIcon from "../components/icons/ShuffleIcon";
 
 function Players() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const gameSettings = useSelector((state) => state.gameSettings);
     const playerList = useSelector((state) => state.players);
+
+    function shuffleArray(array) {
+        const copiedArray = [...array];
+        for (let i = copiedArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copiedArray[i], copiedArray[j]] = [copiedArray[j], copiedArray[i]];
+        }
+        return copiedArray;
+    }
+
+    const handleShuffleClick = () => {
+        const playersListCopy = [...playerList];
+        const shuffledPlayers = shuffleArray(playersListCopy);
+        dispatch(shufflePlayerList(shuffledPlayers));
+    };
 
     let colorList = colorData;
     let superHeroNameList = superheroNames;
@@ -99,6 +116,12 @@ function Players() {
                             />
                         </>
                     )}
+                />
+                <PrimaryButton
+                    className={style.shuffleButton}
+                    title={"Shuffle players"}
+                    action={handleShuffleClick}
+                    icon={<ShuffleIcon />}
                 />
                 <ContentContainer
                     title={"MAX points"}

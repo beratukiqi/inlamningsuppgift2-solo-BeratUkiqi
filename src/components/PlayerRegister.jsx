@@ -1,17 +1,15 @@
-import React, { useRef } from "react";
 import PlayerCardBig from "./PlayerCardBig";
-import { useDispatch, useSelector } from "react-redux";
-import { setPointsToAdd } from "../app/playersSlice";
+import { useSelector } from "react-redux";
 
 function PlayerRegister({ hasScoreInput, hasEditableNames }) {
     const playerList = useSelector((state) => state.players);
 
     return (
         <>
-            {playerList.map((player) => (
+            {playerList.map((player, i) => (
                 <>
                     <PlayerCardBig
-                        key={player.id}
+                        key={player.id + i}
                         player={player}
                         bgColor={player.bgColor}
                         hasScoreInput={hasScoreInput}

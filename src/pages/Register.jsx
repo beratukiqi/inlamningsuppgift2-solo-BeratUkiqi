@@ -11,6 +11,8 @@ import HeaderMenu from "../components/HeaderMenu";
 import style from "../styles/pages/Register.module.scss";
 import { colorData } from "../app/colorData";
 import superheroNames from "../app/nameGenData";
+import { shufflePlayerList } from "../app/playersSlice";
+import ShuffleIcon from "../components/icons/ShuffleIcon";
 
 function Register() {
     const dispatch = useDispatch();
@@ -19,6 +21,21 @@ function Register() {
 
     let colorList = colorData;
     let superHeroNameList = superheroNames;
+
+    function shuffleArray(array) {
+        const copiedArray = [...array];
+        for (let i = copiedArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copiedArray[i], copiedArray[j]] = [copiedArray[j], copiedArray[i]];
+        }
+        return copiedArray;
+    }
+
+    const handleShuffleClick = () => {
+        const playersListCopy = [...playerList];
+        const shuffledPlayers = shuffleArray(playersListCopy);
+        dispatch(shufflePlayerList(shuffledPlayers));
+    };
 
     const generateColor = () => {
         let chosenIndex = gameSettings.noOfPlayers;
@@ -83,7 +100,16 @@ function Register() {
                         </>
                     )}
                 />
-
+                <p className={style.shuffleBtnMessage}>
+                    Use the list above as a guide to who sits where. Spice it up
+                    by shuffling a couple of times!.
+                </p>
+                <PrimaryButton
+                    className={style.shuffleButton}
+                    title={"Shuffle players"}
+                    action={handleShuffleClick}
+                    icon={<ShuffleIcon />}
+                />
                 <PrimaryButton title={"Players are ready"} path={"/overview"} />
             </main>
         </section>

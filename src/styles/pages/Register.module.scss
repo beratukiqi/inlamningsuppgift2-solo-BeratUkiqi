@@ -25,8 +25,33 @@
             }
         }
 
-        & > button {
+        & > button:last-child {
             margin: 2rem 0;
+        }
+
+        .shuffleButton {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 5rem;
+            border-style: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+            background-color: #3f6248;
+
+            svg {
+                width: 1.8rem;
+                fill: white;
+            }
+        }
+
+        .shuffleBtnMessage {
+            max-width: 80%;
+            margin: auto;
         }
     }
 }

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { produce } from "immer";
 
 const initialState = [];
 
@@ -57,6 +58,11 @@ export const playersSlice = createSlice({
             state.splice(playerIndex, 1);
         },
 
+        shufflePlayerList: (state, action) => {
+            // Clone the state and assign the shuffled players array
+            return [...action.payload];
+        },
+
         changePlayerName: (state, action) => {
             const { playerId, newName } = action.payload;
             const playerIndex = state.findIndex(
@@ -79,6 +85,7 @@ export const {
     removePlayer,
     changePlayerName,
     editPoints,
+    shufflePlayerList,
 } = playersSlice.actions;
 
 // Exportera vår reducer
