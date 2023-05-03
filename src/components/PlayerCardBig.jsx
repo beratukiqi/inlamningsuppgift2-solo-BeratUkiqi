@@ -7,24 +7,30 @@ import {
 } from "../app/playersSlice";
 import { changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import MinusButtonIcon from "./icons/MinusButtonIcon";
 
-function PlayerCardBig({
-    player,
-    bgColor,
-    hasScoreInput,
-    hasEditableNames,
-    uniqueRef,
-}) {
+function PlayerCardBig({ player, bgColor, hasScoreInput, hasEditableNames }) {
     const dispatch = useDispatch();
     const [inputVisible, setInputVisible] = useState(false);
     const inputRef = useRef(null);
-
     const gameSettings = useSelector((state) => state.gameSettings);
 
     const handleShowEdit = () => {
         setInputVisible(true);
     };
+
+    function handleNegativeButton() {
+        const inputValue = inputRef.current.value;
+        inputRef.current.value = -inputValue;
+
+        dispatch(
+            setPointsToAdd({
+                playerId: player.id,
+                newScore: Number(inputRef.current.value),
+            })
+        );
+    }
 
     const handleNameChange = (e) => {
         let inputValue = e.target.value;
@@ -71,22 +77,28 @@ function PlayerCardBig({
             >
                 <p>{player.name}</p>
             </section>
+
             {inputVisible && (
                 <InputField
                     type={"text"}
                     className={"editNameInput"}
                     onBlur={handleNameChange}
-                    ref={uniqueRef}
+                    ref={inputRef}
                     defaultValue={player.name}
                 />
             )}
             {hasScoreInput ? (
-                <InputField
-                    id={player.id}
-                    type={hasScoreInput ? "number" : "string"}
-                    onBlur={handleInputPoints}
-                    ref={uniqueRef}
-                />
+                <>
+                    <InputField
+                        id={player.id}
+                        type={hasScoreInput ? "number" : "string"}
+                        onBlur={handleInputPoints}
+                        ref={inputRef}
+                    />
+                    <MinusButtonIcon
+                        onClick={() => handleNegativeButton(player.id)}
+                    />
+                </>
             ) : (
                 <section className={style.playerCardBig__buttons}>
                     {/* Delete icon */}

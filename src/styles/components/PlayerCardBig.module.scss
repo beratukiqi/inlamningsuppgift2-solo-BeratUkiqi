@@ -1,3 +1,5 @@
+@import "../variables";
+
 .playerCardBig {
     display: flex;
     justify-content: space-between;
@@ -23,7 +25,12 @@
     }
 
     input {
-        width: 50%;
+        width: 30%;
+        font-size: 1.3rem;
+    }
+    svg {
+        width: 3rem;
+        fill: $main-color-dark;
     }
 
     &__buttons {

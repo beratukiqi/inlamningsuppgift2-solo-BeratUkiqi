@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import style from "../styles/components/PlayerCardTiny.module.scss";
 import InputField from "../components/InputField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editPoints } from "../app/playersSlice";
 
 function PlayerCardTiny({ player, bgColor }) {
+    const gameSettings = useSelector((state) => state.gameSettings);
+    const hasPassedMAX = gameSettings.maxPoints - player.points <= 0;
+
     const playerInitials = player.name[0] + player.name[1];
     const [inputVisible, setInputVisible] = useState(false);
     const inputRef = useRef(null);
@@ -35,7 +38,9 @@ function PlayerCardTiny({ player, bgColor }) {
         <article className={style.playerCardTiny}>
             <p
                 className={style.playerCardTiny__initials}
-                style={{ backgroundColor: `${bgColor}` }}
+                style={{
+                    backgroundColor: hasPassedMAX ? "#ff3f3f" : `${bgColor}`,
+                }}
             >
                 {playerInitials}
             </p>

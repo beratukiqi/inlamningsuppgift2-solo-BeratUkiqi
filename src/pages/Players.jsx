@@ -12,6 +12,7 @@ import style from "../styles/pages/Players.module.scss";
 import InputField from "../components/InputField";
 import { colorData } from "../app/colorData";
 import superheroNames from "../app/nameGenData";
+import PrimaryButton from "../components/PrimaryButton";
 
 function Players() {
     const dispatch = useDispatch();
@@ -109,6 +110,7 @@ function Players() {
                         />
                     )}
                 />
+                <PrimaryButton title={"Save changes"} path={"/overview"} />
             </main>
         </section>
     );

@@ -77,12 +77,6 @@ function LandingPage() {
         }
     };
 
-    function handleNegativeButton() {
-        const inputValue = Number(inputRef.current.value);
-        inputRef.current.value = -inputValue;
-        console.log("CLICK");
-    }
-
     return (
         <section className={style.pageContainer}>
             <main className={style.contentWrapper}>
@@ -90,20 +84,14 @@ function LandingPage() {
                 <ContentContainer
                     title={"Enter MAX points"}
                     renderContent={() => (
-                        <>
-                            <InputField
-                                type={"number"}
-                                defaultValue={gameSettings.maxPoints}
-                                onBlur={handleMaxPoints}
-                                inputmode={"numeric"}
-                                pattern={"[d+-]"}
-                                ref={inputRef}
-                            />
-                            <button onClick={handleNegativeButton}>
-                                Negate
-                            </button>
-                        </>
-                        // Wish to have a button here
+                        <InputField
+                            type={"number"}
+                            defaultValue={gameSettings.maxPoints}
+                            onBlur={handleMaxPoints}
+                            inputmode={"numeric"}
+                            pattern={"[d+-]"}
+                            ref={inputRef}
+                        />
                     )}
                 />
 
