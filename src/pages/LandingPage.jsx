@@ -1,9 +1,12 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
     changeMaxPoints,
     changeNoOfPlayers,
     resetToInitialState,
+    setColorsData,
+    setNamesData,
 } from "../app/gameSettingsSlice";
 import { clearState, generatePlayer } from "../app/playersSlice";
 import Header from "../components/Header";
@@ -12,10 +15,7 @@ import HeaderMenu from "../components/HeaderMenu";
 import GameRulesIcon from "../components/icons/GameRulesIcon";
 import PrimaryButton from "../components/PrimaryButton";
 import ContentContainer from "../components/ContentContainer";
-import { colorData } from "../app/colorData";
-import superheroNames from "../app/nameGenData";
 import style from "../styles/pages/LandingPage.module.scss";
-import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
     const dispatch = useDispatch();
@@ -27,28 +27,43 @@ function LandingPage() {
         dispatch(clearState());
     }, []);
 
+    useEffect(() => {
+        async function fetchNameData() {
+            try {
+                const response = await fetch("/data.json");
+                const data = await response.json();
+                // Sets the fetched names to the state for future use
+                dispatch(setNamesData(data.names));
+                dispatch(setColorsData(data.colors));
+            } catch (error) {
+                console.error(error, "Something went wrong");
+            }
+        }
+        fetchNameData();
+    }, []);
+
     const gameSettings = useSelector((state) => state.gameSettings);
 
     // Generates a unique name to a player
     const superheroNameGenerator = () => {
-        let superHeroNameList = superheroNames;
+        let superHeroNameList = gameSettings.namesData;
 
         let firstIndex = Math.floor(
-            Math.random() * superHeroNameList.first.length
+            Math.random() * superHeroNameList[0].first.length
         );
         let secondIndex = Math.floor(
-            Math.random() * superHeroNameList.second.length
+            Math.random() * superHeroNameList[1].second.length
         );
 
-        let firstName = superHeroNameList.first[firstIndex];
-        let secondName = superHeroNameList.second[secondIndex];
+        let firstName = superHeroNameList[0].first[firstIndex];
+        let secondName = superHeroNameList[1].second[secondIndex];
         let fullName = `${firstName} ${secondName}`;
 
         return fullName;
     };
 
     const generateColor = (i) => {
-        let colorList = colorData;
+        let colorList = gameSettings.colorsData;
         let chosenIndex = i;
         return colorList[chosenIndex];
     };

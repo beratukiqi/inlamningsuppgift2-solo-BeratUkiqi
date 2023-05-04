@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { shufflePlayerList, generatePlayer } from "../app/playersSlice";
-import { changeNoOfPlayers, changeMaxPoints } from "../app/gameSettingsSlice";
+import {
+    changeNoOfPlayers,
+    changeMaxPoints,
+    setNamesData,
+    setColorsData,
+} from "../app/gameSettingsSlice";
 import Header from "../components/Header";
 import HeaderMenu from "../components/HeaderMenu";
 import InputField from "../components/InputField";
@@ -12,14 +18,26 @@ import BackButtonIcon from "../components/icons/BackButtonIcon";
 import SecondaryButton from "../components/SecondaryButton";
 import ContentContainer from "../components/ContentContainer";
 import style from "../styles/pages/Players.module.scss";
-import superheroNames from "../app/nameGenData";
-import { colorData } from "../app/colorData";
 
 function Players() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const gameSettings = useSelector((state) => state.gameSettings);
     const playerList = useSelector((state) => state.players);
+    useEffect(() => {
+        async function fetchNameData() {
+            try {
+                const response = await fetch("/data.json");
+                const data = await response.json();
+                // Sets the fetched names to the state for future use
+                dispatch(setNamesData(data.names));
+                dispatch(setColorsData(data.colors));
+            } catch (error) {
+                console.error(error, "Something went wrong");
+            }
+        }
+        fetchNameData();
+    }, []);
 
     // Takes an array and shuffles it based off Fisher-Yates shuffle algorithm
     const shuffleArray = (array) => {
@@ -40,18 +58,18 @@ function Players() {
 
     // Generates a unique name to a player
     const superheroNameGenerator = () => {
-        let superHeroNameList = superheroNames;
+        let superHeroNameList = gameSettings.namesData;
 
         let firstIndex = Math.floor(
-            Math.random() * superHeroNameList.first.length
+            Math.random() * superHeroNameList[0].first.length
         );
         let secondIndex = Math.floor(
-            Math.random() * superHeroNameList.second.length
+            Math.random() * superHeroNameList[1].second.length
         );
 
-        let firstName = superHeroNameList.first[firstIndex];
-        let secondName = superHeroNameList.second[secondIndex];
-        let fullName = firstName + " " + secondName;
+        let firstName = superHeroNameList[0].first[firstIndex];
+        let secondName = superHeroNameList[1].second[secondIndex];
+        let fullName = `${firstName} ${secondName}`;
 
         // Generates a new name if the name already exists
         playerList.forEach((player) => {
@@ -64,7 +82,7 @@ function Players() {
     };
 
     const generateColor = () => {
-        let colorList = colorData;
+        let colorList = gameSettings.colorsData;
         let chosenIndex = gameSettings.noOfPlayers;
         return colorList[chosenIndex];
     };

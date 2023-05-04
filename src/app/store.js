@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import playersReducer from "./playersSlice";
 import gameSettingsReducer from "./gameSettingsSlice";
-import { saveState, loadState } from "./helperFunctions";
+import { saveState, loadState } from "../helpers/helperFunctions";
 
-const loadedState = loadState();
+const loadedState = loadState(); // Gets the saved state from localStorage
 
 export const store = configureStore({
     reducer: {
@@ -14,7 +14,7 @@ export const store = configureStore({
 });
 
 store.subscribe(() => {
-    saveState(store.getState());
+    saveState(store.getState()); // Saves the state to localStorage when changes occur
 });
 
 export default store;
