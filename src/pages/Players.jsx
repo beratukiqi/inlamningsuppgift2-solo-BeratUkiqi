@@ -107,7 +107,7 @@ function Players() {
                     </>
                 )}
             />
-            <main className={style.contentWrapper}>
+            <main className="contentWrapper">
                 <Header
                     title={"Game settings"}
                     subTitle={"Feel free to tweak things to your likings. "}
@@ -125,7 +125,7 @@ function Players() {
                     )}
                 />
                 <PrimaryButton
-                    className={style.shuffleButton}
+                    className="shuffleButton"
                     title={"Shuffle players"}
                     action={handleShuffleClick}
                     icon={<ShuffleIcon />}
@@ -142,7 +142,7 @@ function Players() {
                         />
                     )}
                 />
-                <PrimaryButton title={"Save changes"} path={"/overview"} />
+                <PrimaryButton title={"Let's play!"} path={"/overview"} />
             </main>
         </section>
     );

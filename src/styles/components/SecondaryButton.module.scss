@@ -1,7 +1,7 @@
 @import "../mixins";
 
 .SecondaryButton {
-    @include flexRowCenter;
+    @include flexCenter(row);
     margin-top: 1rem;
     width: 100%;
     padding: 0.5rem;

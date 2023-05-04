@@ -4,6 +4,7 @@ import { shufflePlayerList, generatePlayer } from "../app/playersSlice";
 import Header from "../components/Header";
 import HeaderMenu from "../components/HeaderMenu";
 import ShuffleIcon from "../components/icons/ShuffleIcon";
+import GameRulesIcon from "../components/icons/GameRulesIcon";
 import PrimaryButton from "../components/PrimaryButton";
 import PlayerRegister from "../components/PlayerRegister";
 import SecondaryButton from "../components/SecondaryButton";
@@ -11,9 +12,11 @@ import ContentContainer from "../components/ContentContainer";
 import style from "../styles/pages/Register.module.scss";
 import superheroNames from "../app/nameGenData";
 import { colorData } from "../app/colorData";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const gameSettings = useSelector((state) => state.gameSettings);
     const playerList = useSelector((state) => state.players);
 
@@ -84,9 +87,12 @@ function Register() {
 
     return (
         <section className={style.pageContainer}>
-            <HeaderMenu />
-
-            <main className={style.contentWrapper}>
+            <HeaderMenu
+                renderContent={() => (
+                    <GameRulesIcon onClick={() => navigate("/rules")} />
+                )}
+            />
+            <main className="contentWrapper">
                 <Header
                     title={"You have been given superhero names! "}
                     subTitle={

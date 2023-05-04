@@ -1,18 +1,32 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeMaxPoints, changeNoOfPlayers } from "../app/gameSettingsSlice";
-import { generatePlayer } from "../app/playersSlice";
+import {
+    changeMaxPoints,
+    changeNoOfPlayers,
+    resetToInitialState,
+} from "../app/gameSettingsSlice";
+import { clearState, generatePlayer } from "../app/playersSlice";
 import Header from "../components/Header";
 import InputField from "../components/InputField";
+import HeaderMenu from "../components/HeaderMenu";
+import GameRulesIcon from "../components/icons/GameRulesIcon";
 import PrimaryButton from "../components/PrimaryButton";
 import ContentContainer from "../components/ContentContainer";
 import { colorData } from "../app/colorData";
 import superheroNames from "../app/nameGenData";
 import style from "../styles/pages/LandingPage.module.scss";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const inputRef = useRef(null);
+
+    useEffect(() => {
+        dispatch(resetToInitialState());
+        dispatch(clearState());
+    }, []);
+
     const gameSettings = useSelector((state) => state.gameSettings);
 
     // Generates a unique name to a player
@@ -83,7 +97,12 @@ function LandingPage() {
 
     return (
         <section className={style.pageContainer}>
-            <main className={style.contentWrapper}>
+            <HeaderMenu
+                renderContent={() => (
+                    <GameRulesIcon onClick={() => navigate("/rules")} />
+                )}
+            />
+            <main className="contentWrapper">
                 <Header title={"Let’s set up some things before we start!"} />
                 <ContentContainer
                     title={"Enter MAX points"}

@@ -1,28 +1,6 @@
 @import "../variables";
+@import "../mixins";
 
 .pageContainer {
-    background-color: $background-color--roundActive;
-    padding: 1rem;
-    min-height: 100vh;
-
-    .contentWrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 2rem;
-
-        & > header {
-            margin-bottom: 2rem;
-
-            p {
-                max-width: 75%;
-                margin: auto;
-                margin-top: 0.5rem;
-            }
-        }
-
-        button {
-            margin: 2rem 0;
-        }
-    }
+    @include pageContainer($background-color--roundActive);
 }

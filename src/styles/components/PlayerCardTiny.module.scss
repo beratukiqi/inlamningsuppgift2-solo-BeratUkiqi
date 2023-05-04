@@ -1,24 +1,20 @@
+@import "../mixins";
+
 .playerCardTiny {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0rem;
+    @include flexCenter(column);
     width: 100%;
+    gap: 0.2rem;
     position: relative;
 
     .playerCardTiny &__initials {
-        background-color: #a5e9b4;
-        padding: 0.3rem 0.8rem;
         width: 3rem;
         height: 2rem;
-        border-radius: 3rem;
-        font-weight: 700;
+        border-radius: 2rem;
+        font-weight: 600;
     }
 
     p {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flexCenter(row);
         height: 2.5rem;
     }
 

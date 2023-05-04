@@ -23,7 +23,7 @@ function OngoingRound() {
                     </>
                 )}
             />
-            <main className={style.contentWrapper}>
+            <main className="contentWrapper">
                 <Header
                     title={"The game is underway, good luck! "}
                     subTitle={

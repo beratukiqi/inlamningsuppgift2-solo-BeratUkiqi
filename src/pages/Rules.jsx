@@ -15,7 +15,7 @@ function Rules() {
                 )}
             />
 
-            <main className={style.contentWrapper}>
+            <main className="contentWrapper">
                 <ContentContainer
                     title={"Såhär fungerar Matatu"}
                     renderContent={() => (

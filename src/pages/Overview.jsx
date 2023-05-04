@@ -21,12 +21,12 @@ function Overview() {
             <HeaderMenu
                 renderContent={() => (
                     <>
-                        <PlayersIcon onClick={() => navigate("/players")} />
                         <GameRulesIcon onClick={() => navigate("/rules")} />
+                        <PlayersIcon onClick={() => navigate("/players")} />
                     </>
                 )}
             />
-            <main className={style.contentWrapper}>
+            <main className="contentWrapper">
                 <Header
                     title={"Game overview!"}
                     subTitle={

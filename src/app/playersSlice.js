@@ -66,6 +66,9 @@ export const playersSlice = createSlice({
                 state[playerIndex].name = newName;
             }
         },
+        clearState: (state, action) => {
+            state.splice(0, state.length);
+        },
     },
 });
 
@@ -77,6 +80,7 @@ export const {
     changePlayerName,
     editPoints,
     shufflePlayerList,
+    clearState,
 } = playersSlice.actions;
 
 export default playersSlice.reducer;

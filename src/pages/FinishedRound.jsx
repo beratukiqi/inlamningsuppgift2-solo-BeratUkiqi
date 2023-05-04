@@ -24,7 +24,7 @@ function FinishedRound() {
                     <BackButtonIcon onClick={() => navigate(-1)} />
                 )}
             />
-            <main className={style.contentWrapper}>
+            <main className="contentWrapper">
                 <Header
                     title={"Round is over, count your points!"}
                     subTitle={"Beware of the not so talented mathematicians."}

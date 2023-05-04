@@ -17,9 +17,14 @@ export const gameSettingsSlice = createSlice({
             const newNoOfPlayers = action.payload;
             state.noOfPlayers = newNoOfPlayers;
         },
+        resetToInitialState: (state, action) => {
+            state.noOfPlayers = initialState.noOfPlayers;
+            state.maxPoints = initialState.maxPoints;
+        },
     },
 });
 
-export const { changeMaxPoints, changeNoOfPlayers } = gameSettingsSlice.actions;
+export const { changeMaxPoints, changeNoOfPlayers, resetToInitialState } =
+    gameSettingsSlice.actions;
 
 export default gameSettingsSlice.reducer;
