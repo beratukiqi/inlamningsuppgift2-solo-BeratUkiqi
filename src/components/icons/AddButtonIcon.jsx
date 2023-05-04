@@ -1,4 +1,4 @@
-function addButton() {
+function AddButtonIcon() {
     return (
         <svg
             width="36"
@@ -27,4 +27,4 @@ function addButton() {
     );
 }
 
-export default addButton;
+export default AddButtonIcon;

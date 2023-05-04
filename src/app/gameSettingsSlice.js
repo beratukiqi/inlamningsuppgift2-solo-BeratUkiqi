@@ -5,7 +5,6 @@ const initialState = {
     noOfPlayers: 2,
 };
 
-// skapa vårat slice här
 export const gameSettingsSlice = createSlice({
     name: "gameSettings",
     initialState,
@@ -21,8 +20,6 @@ export const gameSettingsSlice = createSlice({
     },
 });
 
-// Generar actions från våra reducers
 export const { changeMaxPoints, changeNoOfPlayers } = gameSettingsSlice.actions;
 
-// Exportera vår reducer
 export default gameSettingsSlice.reducer;

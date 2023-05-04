@@ -1,18 +1,16 @@
-import ContentContainer from "../components/ContentContainer";
-import Header from "../components/Header";
-import PrimaryButton from "../components/PrimaryButton";
-import SecondaryButton from "../components/SecondaryButton";
-import PlayerRegister from "../components/PlayerRegister";
+import { useDispatch, useSelector } from "react-redux";
 import { changeNoOfPlayers } from "../app/gameSettingsSlice";
-import { generatePlayer } from "../app/playersSlice";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { shufflePlayerList, generatePlayer } from "../app/playersSlice";
+import Header from "../components/Header";
 import HeaderMenu from "../components/HeaderMenu";
-import style from "../styles/pages/Register.module.scss";
-import { colorData } from "../app/colorData";
-import superheroNames from "../app/nameGenData";
-import { shufflePlayerList } from "../app/playersSlice";
 import ShuffleIcon from "../components/icons/ShuffleIcon";
+import PrimaryButton from "../components/PrimaryButton";
+import PlayerRegister from "../components/PlayerRegister";
+import SecondaryButton from "../components/SecondaryButton";
+import ContentContainer from "../components/ContentContainer";
+import style from "../styles/pages/Register.module.scss";
+import superheroNames from "../app/nameGenData";
+import { colorData } from "../app/colorData";
 
 function Register() {
     const dispatch = useDispatch();
@@ -22,14 +20,14 @@ function Register() {
     let colorList = colorData;
     let superHeroNameList = superheroNames;
 
-    function shuffleArray(array) {
+    const shuffleArray = (array) => {
         const copiedArray = [...array];
         for (let i = copiedArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [copiedArray[i], copiedArray[j]] = [copiedArray[j], copiedArray[i]];
         }
         return copiedArray;
-    }
+    };
 
     const handleShuffleClick = () => {
         const playersListCopy = [...playerList];
@@ -81,6 +79,7 @@ function Register() {
     return (
         <section className={style.pageContainer}>
             <HeaderMenu />
+
             <main className={style.contentWrapper}>
                 <Header
                     title={"You have been given superhero names! "}
@@ -88,6 +87,7 @@ function Register() {
                         "If you are not feeling like superheroes, change the names by clicking on a player"
                     }
                 />
+
                 <ContentContainer
                     title={"Registration is open!"}
                     renderContent={() => (
@@ -100,16 +100,19 @@ function Register() {
                         </>
                     )}
                 />
+
                 <p className={style.shuffleBtnMessage}>
                     Use the list above as a guide to who sits where. Spice it up
                     by shuffling a couple of times!.
                 </p>
+
                 <PrimaryButton
                     className={style.shuffleButton}
                     title={"Shuffle players"}
                     action={handleShuffleClick}
                     icon={<ShuffleIcon />}
                 />
+
                 <PrimaryButton title={"Players are ready"} path={"/overview"} />
             </main>
         </section>

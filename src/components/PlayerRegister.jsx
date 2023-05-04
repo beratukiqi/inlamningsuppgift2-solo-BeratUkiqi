@@ -1,5 +1,5 @@
-import PlayerCardBig from "./PlayerCardBig";
 import { useSelector } from "react-redux";
+import PlayerCardBig from "./PlayerCardBig";
 
 function PlayerRegister({ hasScoreInput, hasEditableNames }) {
     const playerList = useSelector((state) => state.players);

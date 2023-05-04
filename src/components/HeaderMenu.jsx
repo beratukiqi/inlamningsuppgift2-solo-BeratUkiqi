@@ -1,15 +1,5 @@
 function HeaderMenu({ renderContent }) {
-    return (
-        <nav
-            style={{
-                height: "200",
-                display: "flex",
-                justifyContent: "space-between",
-            }}
-        >
-            {renderContent && renderContent()}
-        </nav>
-    );
+    return <nav>{renderContent && renderContent()}</nav>;
 }
 
 export default HeaderMenu;

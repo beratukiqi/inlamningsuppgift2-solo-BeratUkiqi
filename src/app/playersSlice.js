@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { produce } from "immer";
 
 const initialState = [];
 
-// skapa vårat slice här
 export const playersSlice = createSlice({
     name: "players",
     initialState,
@@ -24,7 +22,7 @@ export const playersSlice = createSlice({
                 let newTotal = player.points + player.pointsToAdd;
                 player.points = newTotal;
                 player.pointsHistory.push(newTotal);
-                player.pointsToAdd = 0;
+                player.pointsToAdd = 0; // Resets pointsToAdd
             });
         },
 
@@ -39,10 +37,6 @@ export const playersSlice = createSlice({
                 state[playerIndex].pointsHistory[lastPointIndex - 1] = newScore;
                 state[playerIndex].points = newScore;
             }
-            console.log(
-                state[playerIndex].pointsHistory[lastPointIndex - 1],
-                "Targeted thing to change"
-            );
         },
 
         generatePlayer: (state, action) => {
@@ -58,8 +52,7 @@ export const playersSlice = createSlice({
             state.splice(playerIndex, 1);
         },
 
-        shufflePlayerList: (state, action) => {
-            // Clone the state and assign the shuffled players array
+        shufflePlayerList: (action) => {
             return [...action.payload];
         },
 
@@ -68,16 +61,13 @@ export const playersSlice = createSlice({
             const playerIndex = state.findIndex(
                 (player) => player.id === playerId
             );
-            console.log(state[playerIndex].name, "Name before edit");
             if (playerIndex > -1) {
                 state[playerIndex].name = newName;
             }
-            console.log(state[playerIndex].name, "Name after edit");
         },
     },
 });
 
-// Generar actions från våra reducers
 export const {
     setPointsToAdd,
     addPoints,
@@ -88,5 +78,4 @@ export const {
     shufflePlayerList,
 } = playersSlice.actions;
 
-// Exportera vår reducer
 export default playersSlice.reducer;

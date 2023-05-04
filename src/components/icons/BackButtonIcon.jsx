@@ -1,6 +1,6 @@
 function BackButtonIcon({ onClick }) {
     return (
-        <div style={{ display: "flex", gap: ".5rem", alignItems: "center" }}>
+        <div>
             <svg
                 onClick={onClick}
                 width={30}

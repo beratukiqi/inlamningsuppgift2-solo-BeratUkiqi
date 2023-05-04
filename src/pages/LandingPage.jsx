@@ -1,20 +1,19 @@
-import Header from "../components/Header";
-import ContentContainer from "../components/ContentContainer";
-import PrimaryButton from "../components/PrimaryButton";
-import { useSelector } from "react-redux";
-import InputField from "../components/InputField";
-import { useDispatch } from "react-redux";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { changeMaxPoints, changeNoOfPlayers } from "../app/gameSettingsSlice";
 import { generatePlayer } from "../app/playersSlice";
-import style from "../styles/pages/LandingPage.module.scss";
+import Header from "../components/Header";
+import InputField from "../components/InputField";
+import PrimaryButton from "../components/PrimaryButton";
+import ContentContainer from "../components/ContentContainer";
 import { colorData } from "../app/colorData";
 import superheroNames from "../app/nameGenData";
-import { useRef } from "react";
+import style from "../styles/pages/LandingPage.module.scss";
 
 function LandingPage() {
     const dispatch = useDispatch();
-    const gameSettings = useSelector((state) => state.gameSettings);
     const inputRef = useRef(null);
+    const gameSettings = useSelector((state) => state.gameSettings);
 
     let colorList = colorData;
     let superHeroNameList = superheroNames;

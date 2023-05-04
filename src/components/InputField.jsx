@@ -11,9 +11,9 @@ function InputField(props, ref) {
             className={className ? className : "inputFieldBig"}
             type={type}
             defaultValue={defaultValue}
-            onBlur={(e) => onBlur(e)}
+            onBlur={(e) => onBlur(e)} // Runs the onBlur function passed from props
             onKeyDown={(e) => {
-                // Handles unwanted symbols for player score input
+                // Handles unwanted symbols for number inputs
                 if (type === "number" && invalidChars.includes(e.key)) {
                     e.preventDefault();
                 }

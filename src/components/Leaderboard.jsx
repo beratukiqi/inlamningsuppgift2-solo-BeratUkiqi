@@ -6,6 +6,7 @@ function Leaderboard() {
     return (
         <>
             {[...playerList]
+                // Renders the players from lowest to highest points.
                 .sort((a, b) => a.points - b.points)
                 .map((player, i) => (
                     <PlayerCardSmall

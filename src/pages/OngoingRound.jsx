@@ -1,24 +1,25 @@
-import ContentContainer from "../components/ContentContainer";
-import StartingPlayer from "../components/StartingPlayer";
-import Header from "../components/Header";
-import PrimaryButton from "../components/PrimaryButton";
-import Leaderboard from "../components/Leaderboard";
-import HeaderMenu from "../components/HeaderMenu";
-import BackButtonIcon from "../components/icons/BackButtonIcon";
-import PlayingCardsIcon from "../components/icons/PlayingCardsIcon";
-import GameSettingsIcon from "../components/icons/GameSettingsIcon";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import HeaderMenu from "../components/HeaderMenu";
+import Leaderboard from "../components/Leaderboard";
+import PrimaryButton from "../components/PrimaryButton";
+import GameRulesIcon from "../components/icons/GameRulesIcon";
+import StartingPlayer from "../components/StartingPlayer";
+import BackButtonIcon from "../components/icons/BackButtonIcon";
+import ContentContainer from "../components/ContentContainer";
+import PlayingCardsIcon from "../components/icons/PlayingCardsIcon";
 import style from "../styles/pages/OngoingRound.module.scss";
 
 function OngoingRound() {
     const navigate = useNavigate();
+
     return (
         <section className={style.pageContainer}>
             <HeaderMenu
                 renderContent={() => (
                     <>
                         <BackButtonIcon onClick={() => navigate(-1)} />
-                        <GameSettingsIcon onClick={() => navigate("/rules")} />
+                        <GameRulesIcon onClick={() => navigate("/rules")} />
                     </>
                 )}
             />

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import BackButtonIcon from "../components/icons/BackButtonIcon";
 import HeaderMenu from "../components/HeaderMenu";
-import style from "../styles/pages/Rules.module.scss";
+import BackButtonIcon from "../components/icons/BackButtonIcon";
 import ContentContainer from "../components/ContentContainer";
+import style from "../styles/pages/Rules.module.scss";
 
 function Rules() {
     const navigate = useNavigate();
@@ -14,6 +14,7 @@ function Rules() {
                     <BackButtonIcon onClick={() => navigate(-1)} />
                 )}
             />
+
             <main className={style.contentWrapper}>
                 <ContentContainer
                     title={"Såhär fungerar Matatu"}
@@ -40,6 +41,7 @@ function Rules() {
                         </ul>
                     )}
                 />
+
                 <ContentContainer
                     title={"Instruktioner"}
                     renderContent={() => (
@@ -87,6 +89,7 @@ function Rules() {
                         </ul>
                     )}
                 />
+
                 <ContentContainer
                     title={"Kortfunktioner"}
                     renderContent={() => (

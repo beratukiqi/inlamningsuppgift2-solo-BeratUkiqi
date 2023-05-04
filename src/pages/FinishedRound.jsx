@@ -1,12 +1,12 @@
-import ContentContainer from "../components/ContentContainer";
-import Header from "../components/Header";
-import PlayerRegister from "../components/PlayerRegister";
-import PrimaryButton from "../components/PrimaryButton";
 import { useDispatch } from "react-redux";
-import { addPoints } from "../app/playersSlice";
-import HeaderMenu from "../components/HeaderMenu";
 import { useNavigate } from "react-router-dom";
+import { addPoints } from "../app/playersSlice";
+import Header from "../components/Header";
+import HeaderMenu from "../components/HeaderMenu";
+import PrimaryButton from "../components/PrimaryButton";
+import PlayerRegister from "../components/PlayerRegister";
 import BackButtonIcon from "../components/icons/BackButtonIcon";
+import ContentContainer from "../components/ContentContainer";
 import style from "../styles/pages/FinishedRound.module.scss";
 
 function FinishedRound() {
@@ -16,6 +16,7 @@ function FinishedRound() {
     const handleClick = () => {
         dispatch(addPoints());
     };
+
     return (
         <section className={style.pageContainer}>
             <HeaderMenu
@@ -28,12 +29,14 @@ function FinishedRound() {
                     title={"Round is over, count your points!"}
                     subTitle={"Beware of the not so talented mathematicians."}
                 />
+
                 <ContentContainer
                     title={"Add the player points"}
                     renderContent={() => (
                         <PlayerRegister hasScoreInput={true} />
                     )}
                 />
+
                 <PrimaryButton
                     action={handleClick}
                     title={"Save points"}

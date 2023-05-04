@@ -1,20 +1,19 @@
-import Header from "../components/Header";
-import ContentContainer from "../components/ContentContainer";
-import PlayerRegister from "../components/PlayerRegister";
-import SecondaryButton from "../components/SecondaryButton";
-import BackButtonIcon from "../components/icons/BackButtonIcon";
-import { changeNoOfPlayers, changeMaxPoints } from "../app/gameSettingsSlice";
-import { generatePlayer } from "../app/playersSlice";
-import { useDispatch, useSelector } from "react-redux";
-import HeaderMenu from "../components/HeaderMenu";
 import { useNavigate } from "react-router-dom";
-import style from "../styles/pages/Players.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { shufflePlayerList, generatePlayer } from "../app/playersSlice";
+import { changeNoOfPlayers, changeMaxPoints } from "../app/gameSettingsSlice";
+import Header from "../components/Header";
+import HeaderMenu from "../components/HeaderMenu";
 import InputField from "../components/InputField";
-import { colorData } from "../app/colorData";
-import superheroNames from "../app/nameGenData";
-import PrimaryButton from "../components/PrimaryButton";
-import { shufflePlayerList } from "../app/playersSlice";
 import ShuffleIcon from "../components/icons/ShuffleIcon";
+import PrimaryButton from "../components/PrimaryButton";
+import PlayerRegister from "../components/PlayerRegister";
+import BackButtonIcon from "../components/icons/BackButtonIcon";
+import SecondaryButton from "../components/SecondaryButton";
+import ContentContainer from "../components/ContentContainer";
+import style from "../styles/pages/Players.module.scss";
+import superheroNames from "../app/nameGenData";
+import { colorData } from "../app/colorData";
 
 function Players() {
     const dispatch = useDispatch();
@@ -22,14 +21,14 @@ function Players() {
     const gameSettings = useSelector((state) => state.gameSettings);
     const playerList = useSelector((state) => state.players);
 
-    function shuffleArray(array) {
+    const shuffleArray = (array) => {
         const copiedArray = [...array];
         for (let i = copiedArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [copiedArray[i], copiedArray[j]] = [copiedArray[j], copiedArray[i]];
         }
         return copiedArray;
-    }
+    };
 
     const handleShuffleClick = () => {
         const playersListCopy = [...playerList];

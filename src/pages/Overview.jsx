@@ -1,15 +1,15 @@
-import ContentContainer from "../components/ContentContainer";
-import Header from "../components/Header";
-import PrimaryButton from "../components/PrimaryButton";
-import Leaderboard from "../components/Leaderboard";
-import ScoreBoard from "../components/ScoreBoard";
-import StartingPlayer from "../components/StartingPlayer";
-import HeaderMenu from "../components/HeaderMenu";
-import PlayersIcon from "../components/icons/PlayersIcon";
-import GameSettingsIcon from "../components/icons/GameSettingsIcon";
-import { useNavigate } from "react-router-dom";
-import DangerZone from "../components/DangerZone";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import HeaderMenu from "../components/HeaderMenu";
+import ScoreBoard from "../components/ScoreBoard";
+import DangerZone from "../components/DangerZone";
+import PlayersIcon from "../components/icons/PlayersIcon";
+import Leaderboard from "../components/Leaderboard";
+import PrimaryButton from "../components/PrimaryButton";
+import GameRulesIcon from "../components/icons/GameRulesIcon";
+import StartingPlayer from "../components/StartingPlayer";
+import ContentContainer from "../components/ContentContainer";
 import style from "../styles/pages/Overview.module.scss";
 
 function Overview() {
@@ -22,7 +22,7 @@ function Overview() {
                 renderContent={() => (
                     <>
                         <PlayersIcon onClick={() => navigate("/players")} />
-                        <GameSettingsIcon onClick={() => navigate("/rules")} />
+                        <GameRulesIcon onClick={() => navigate("/rules")} />
                     </>
                 )}
             />
@@ -33,7 +33,9 @@ function Overview() {
                         "Keep track of who is in the lead and who to target together! "
                     }
                 />
+
                 <h2>Max points: {gameSettings.maxPoints}</h2>
+
                 <ContentContainer
                     title={"Leaderboard"}
                     renderContent={() => <Leaderboard />}
@@ -43,6 +45,7 @@ function Overview() {
                     title={"Scoreboard"}
                     renderContent={() => <ScoreBoard />}
                 />
+
                 <ContentContainer
                     title={"Danger Zone!"}
                     renderContent={
@@ -50,10 +53,12 @@ function Overview() {
                         // Renders players with < 100 points left in asc order
                     }
                 />
+
                 <ContentContainer
                     title={"Starting player:"}
                     renderContent={() => <StartingPlayer />}
                 />
+
                 <PrimaryButton
                     title={"Start a round"}
                     path={"/ongoing-round"}

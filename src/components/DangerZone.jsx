@@ -4,11 +4,16 @@ import PlayerCardSmall from "./PlayerCardSmall";
 function DangerZone() {
     const playerList = useSelector((state) => state.players);
     const gameSettings = useSelector((state) => state.gameSettings);
-    console.log("playerList:", playerList);
-    console.log("gameSettings:", gameSettings);
+    const dangerZoneLimit = 100; // 100 points or less left to reach MAX point limit
 
     const playersInDangerZone = playerList
-        .filter((player) => gameSettings.maxPoints - player.points <= 100)
+
+        // Filters players that passed the danger zone limit
+        .filter(
+            (player) =>
+                gameSettings.maxPoints - player.points <= dangerZoneLimit
+        )
+        // Player storted by the highest to lowest points
         .sort((a, b) => b.points - a.points);
 
     return playersInDangerZone.length > 0 ? (

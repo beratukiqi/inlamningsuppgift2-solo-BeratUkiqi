@@ -1,7 +1,6 @@
 function CloseButtonIcon({ onClick }) {
     return (
-        <div style={{ display: "flex", gap: ".5rem", alignItems: "center" }}>
-            <p>Close</p>
+        <div>
             <svg
                 onClick={onClick}
                 width="35"
@@ -26,6 +25,7 @@ function CloseButtonIcon({ onClick }) {
                     </clipPath>
                 </defs>
             </svg>
+            <p>Close</p>
         </div>
     );
 }
