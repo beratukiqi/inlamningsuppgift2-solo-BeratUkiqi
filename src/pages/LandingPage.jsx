@@ -102,7 +102,8 @@ function LandingPage() {
                             type={"number"}
                             defaultValue={gameSettings.noOfPlayers}
                             onBlur={(e) => handleNoOfPlayers(e)}
-                            pattern={"d*"}
+                            inputmode={"numeric"}
+                            pattern={"[d+-]"}
                         />
                     )}
                 />

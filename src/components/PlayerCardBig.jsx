@@ -94,6 +94,8 @@ function PlayerCardBig({ player, bgColor, hasScoreInput, hasEditableNames }) {
                         type={hasScoreInput ? "number" : "string"}
                         onBlur={handleInputPoints}
                         ref={inputRef}
+                        inputmode={"numeric"}
+                        pattern={"[d+-]"}
                     />
                     <MinusButtonIcon
                         onClick={() => handleNegativeButton(player.id)}

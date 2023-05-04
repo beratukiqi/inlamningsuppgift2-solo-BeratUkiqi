@@ -130,6 +130,8 @@ function Players() {
                             type={"number"}
                             defaultValue={gameSettings.maxPoints}
                             onBlur={handleMaxPoints}
+                            inputmode={"numeric"}
+                            pattern={"[d+-]"}
                         />
                     )}
                 />
