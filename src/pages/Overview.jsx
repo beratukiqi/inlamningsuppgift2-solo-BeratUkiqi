@@ -49,8 +49,8 @@ function Overview() {
                 <ContentContainer
                     title={"Danger Zone!"}
                     renderContent={
-                        () => <DangerZone />
                         // Renders players with < 100 points left in asc order
+                        () => <DangerZone />
                     }
                 />
 

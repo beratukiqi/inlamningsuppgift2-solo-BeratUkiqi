@@ -15,63 +15,68 @@ function LandingPage() {
     const inputRef = useRef(null);
     const gameSettings = useSelector((state) => state.gameSettings);
 
-    let colorList = colorData;
-    let superHeroNameList = superheroNames;
-
+    // Generates a unique name to a player
     const superheroNameGenerator = () => {
+        let superHeroNameList = superheroNames;
+
         let firstIndex = Math.floor(
             Math.random() * superHeroNameList.first.length
         );
-        let firstName = superHeroNameList.first[firstIndex];
         let secondIndex = Math.floor(
             Math.random() * superHeroNameList.second.length
         );
+
+        let firstName = superHeroNameList.first[firstIndex];
         let secondName = superHeroNameList.second[secondIndex];
-        let fullName = firstName + " " + secondName;
+        let fullName = `${firstName} ${secondName}`;
 
         return fullName;
     };
 
     const generateColor = (i) => {
+        let colorList = colorData;
         let chosenIndex = i;
         return colorList[chosenIndex];
     };
 
+    // Takes input and updates a new MAX points to the state
     const handleMaxPoints = (e) => {
         let inputValue = e.target.value;
-        if (inputValue === "") {
-            inputValue = gameSettings.maxPoints;
-        }
+        inputValue = !inputValue
+            ? gameSettings.maxPoints
+            : parseInt(inputValue);
 
-        const newMaxPoints = parseInt(inputValue);
-        dispatch(changeMaxPoints({ newMaxPoints }));
-        e.target.value = newMaxPoints; // Re-Sets value to match game Max Points in case empty
+        dispatch(changeMaxPoints({ newMaxPoints: inputValue }));
+        e.target.value = inputValue; // Changes the UI to the new value
         e.target.blur();
     };
 
+    // Takes input and updates the number of players to the state
     const handleNoOfPlayers = (e) => {
         let inputValue = e.target.value;
-        if (inputValue === "") {
-            inputValue = gameSettings.noOfPlayers;
-        }
+        inputValue = !inputValue
+            ? gameSettings.noOfPlayers
+            : parseInt(inputValue);
 
-        const noOfPlayers = parseInt(inputValue);
-        dispatch(changeNoOfPlayers(noOfPlayers));
-        e.target.value = noOfPlayers; // Re-Sets value to match game Max Points in case empty
+        dispatch(changeNoOfPlayers(inputValue));
+        e.target.value = inputValue; // Changes the UI to the new value
         e.target.blur();
     };
 
+    // Creates unique player objects and populates the state.
     const generatePlayers = () => {
         for (let i = 1; i <= gameSettings.noOfPlayers; i++) {
             const name = superheroNameGenerator();
+
             const newPlayer = {
-                id: name + i,
+                id: name,
                 name: name,
                 bgColor: generateColor(i - 1),
                 points: 0,
                 pointsToAdd: 0,
                 pointsHistory: [],
             };
+
             dispatch(generatePlayer(newPlayer));
         }
     };

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import produce from "immer";
 
 const initialState = [];
 
@@ -52,7 +53,7 @@ export const playersSlice = createSlice({
             state.splice(playerIndex, 1);
         },
 
-        shufflePlayerList: (action) => {
+        shufflePlayerList: (state, action) => {
             return [...action.payload];
         },
 

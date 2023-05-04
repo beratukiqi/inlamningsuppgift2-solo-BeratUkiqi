@@ -17,9 +17,7 @@ function Register() {
     const gameSettings = useSelector((state) => state.gameSettings);
     const playerList = useSelector((state) => state.players);
 
-    let colorList = colorData;
-    let superHeroNameList = superheroNames;
-
+    // Takes an array and shuffles it based off Fisher-Yates shuffle algorithm
     const shuffleArray = (array) => {
         const copiedArray = [...array];
         for (let i = copiedArray.length - 1; i > 0; i--) {
@@ -29,25 +27,25 @@ function Register() {
         return copiedArray;
     };
 
+    // Shuffles the players and updates the state accordingly
     const handleShuffleClick = () => {
         const playersListCopy = [...playerList];
         const shuffledPlayers = shuffleArray(playersListCopy);
         dispatch(shufflePlayerList(shuffledPlayers));
     };
 
-    const generateColor = () => {
-        let chosenIndex = gameSettings.noOfPlayers;
-        return colorList[chosenIndex];
-    };
-
+    // Generates a unique name to a player
     const superheroNameGenerator = () => {
+        let superHeroNameList = superheroNames;
+
         let firstIndex = Math.floor(
             Math.random() * superHeroNameList.first.length
         );
-        let firstName = superHeroNameList.first[firstIndex];
         let secondIndex = Math.floor(
             Math.random() * superHeroNameList.second.length
         );
+
+        let firstName = superHeroNameList.first[firstIndex];
         let secondName = superHeroNameList.second[secondIndex];
         let fullName = firstName + " " + secondName;
 
@@ -62,8 +60,14 @@ function Register() {
         return fullName;
     };
 
+    const generateColor = () => {
+        let colorList = colorData;
+        let chosenIndex = gameSettings.noOfPlayers;
+        return colorList[chosenIndex];
+    };
+
+    // Adds a new player object to the state.
     const addNewPlayer = () => {
-        dispatch(changeNoOfPlayers(gameSettings.noOfPlayers + 1));
         const name = superheroNameGenerator();
         const newPlayer = {
             id: name,
@@ -74,8 +78,10 @@ function Register() {
             pointsHistory: [],
         };
 
+        dispatch(changeNoOfPlayers(gameSettings.noOfPlayers + 1));
         dispatch(generatePlayer(newPlayer));
     };
+
     return (
         <section className={style.pageContainer}>
             <HeaderMenu />

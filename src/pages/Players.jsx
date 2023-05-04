@@ -21,6 +21,7 @@ function Players() {
     const gameSettings = useSelector((state) => state.gameSettings);
     const playerList = useSelector((state) => state.players);
 
+    // Takes an array and shuffles it based off Fisher-Yates shuffle algorithm
     const shuffleArray = (array) => {
         const copiedArray = [...array];
         for (let i = copiedArray.length - 1; i > 0; i--) {
@@ -30,63 +31,70 @@ function Players() {
         return copiedArray;
     };
 
+    // Shuffles the players and updates the state accordingly
     const handleShuffleClick = () => {
         const playersListCopy = [...playerList];
         const shuffledPlayers = shuffleArray(playersListCopy);
         dispatch(shufflePlayerList(shuffledPlayers));
     };
 
-    let colorList = colorData;
-    let superHeroNameList = superheroNames;
-
+    // Generates a unique name to a player
     const superheroNameGenerator = () => {
+        let superHeroNameList = superheroNames;
+
         let firstIndex = Math.floor(
             Math.random() * superHeroNameList.first.length
         );
-        let firstName = superHeroNameList.first[firstIndex];
         let secondIndex = Math.floor(
             Math.random() * superHeroNameList.second.length
         );
+
+        let firstName = superHeroNameList.first[firstIndex];
         let secondName = superHeroNameList.second[secondIndex];
         let fullName = firstName + " " + secondName;
 
-        // Generates a new name if name already exists
+        // Generates a new name if the name already exists
         playerList.forEach((player) => {
             if (player.name === fullName) {
-                console.log("Matched names, changing name");
                 fullName = superheroNameGenerator();
             }
         });
+
         return fullName;
     };
 
-    const generateRandomColor = () => {
+    const generateColor = () => {
+        let colorList = colorData;
         let chosenIndex = gameSettings.noOfPlayers;
         return colorList[chosenIndex];
     };
 
+    // Adds a new player object to the state.
     const addNewPlayer = () => {
-        dispatch(changeNoOfPlayers(gameSettings.noOfPlayers + 1));
         const name = superheroNameGenerator();
+
         const newPlayer = {
             id: name,
             name: name,
-            bgColor: generateRandomColor(),
+            bgColor: generateColor(),
             points: 0,
             pointsToAdd: 0,
             pointsHistory: [],
         };
+
+        dispatch(changeNoOfPlayers(gameSettings.noOfPlayers + 1));
         dispatch(generatePlayer(newPlayer));
     };
 
+    // Takes input and updates a new MAX points to the state
     const handleMaxPoints = (e) => {
         let inputValue = e.target.value;
-        if (inputValue === "") {
-            inputValue = gameSettings.maxPoints;
-        }
-        const newMaxPoints = parseInt(inputValue);
-        dispatch(changeMaxPoints({ newMaxPoints }));
-        e.target.value = newMaxPoints; // Re-Sets value to match game Max Points in case empty
+        inputValue = !inputValue
+            ? gameSettings.maxPoints
+            : parseInt(inputValue);
+
+        dispatch(changeMaxPoints({ newMaxPoints: inputValue }));
+        e.target.value = inputValue; // Changes the UI to the new value
         e.target.blur();
     };
 
