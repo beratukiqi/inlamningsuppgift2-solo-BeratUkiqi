@@ -67,6 +67,8 @@ function PlayerCardTiny({ player, bgColor }) {
                                     ref={inputRef}
                                     defaultValue={player.points}
                                     onBlur={handleInput}
+                                    inputmode={"numeric"}
+                                    pattern={"[d+-]"}
                                 />
                             )}
                             <p
