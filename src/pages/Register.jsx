@@ -32,7 +32,10 @@ function Register() {
                 dispatch(setNamesData(data.names));
                 dispatch(setColorsData(data.colors));
             } catch (error) {
-                console.error(error, "Something went wrong");
+                console.error(
+                    error,
+                    "Could not fetch correctly. Check that the data.json file is in the public folder"
+                );
             }
         }
         fetchNameData();
