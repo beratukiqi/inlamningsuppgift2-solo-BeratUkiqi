@@ -6,7 +6,7 @@ import OngoingRound from "./pages/OngoingRound";
 import Overview from "./pages/Overview";
 import Register from "./pages/Register";
 import ErrorPage from "./pages/ErrorPage";
-import Players from "./pages/Players";
+import GameSettings from "./pages/GameSettings";
 import Rules from "./pages/Rules";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -20,7 +20,7 @@ function App() {
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/ongoing-round" element={<OngoingRound />} />
                 <Route path="/finished-round" element={<FinishedRound />} />
-                <Route path="/players" element={<Players />} />
+                <Route path="/settings" element={<GameSettings />} />
                 <Route path="/rules" element={<Rules />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>

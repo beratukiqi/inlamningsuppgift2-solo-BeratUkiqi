@@ -139,7 +139,7 @@ function Register() {
                 </p>
 
                 <PrimaryButton
-                    className={style.shuffleButton}
+                    className="shuffleButton"
                     title={"Shuffle players"}
                     action={handleShuffleClick}
                     icon={<ShuffleIcon />}

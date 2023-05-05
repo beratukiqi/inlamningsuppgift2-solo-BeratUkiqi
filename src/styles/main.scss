@@ -10,7 +10,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    list-style: none;
 }
 
 h1 {
@@ -98,14 +97,36 @@ p {
         }
     }
 
-    & > button:last-child {
-        margin: 2rem 0;
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+
+        padding: 2rem 4rem 3rem 4rem;
+        list-style: none;
+
+        li {
+            text-align: left;
+            padding: 0 1rem;
+        }
+    }
+
+    ol {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+        padding: 2rem 4rem 3rem 4rem;
+
+        li {
+            padding: 0 1rem;
+            text-align: left;
+        }
     }
 
     .shuffleButton {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flexCenter(row);
         gap: 1rem;
         width: 100%;
         padding: 1rem 2rem;
@@ -114,10 +135,25 @@ p {
         font-weight: 700;
         font-size: 1.5rem;
         color: white;
-        background-color: #3f6248;
+        background-color: #302544;
 
         svg {
             width: 1.8rem;
+            fill: white;
+        }
+    }
+
+    .resetButton {
+        @include flexCenter(row);
+        @extend .shuffleButton;
+        background-color: #713636;
+
+        &-confirmed {
+            @extend .resetButton;
+            background-color: #36715d;
+        }
+        svg {
+            width: 1.5rem;
             fill: white;
         }
     }

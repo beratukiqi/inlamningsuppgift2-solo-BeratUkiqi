@@ -66,8 +66,16 @@ export const playersSlice = createSlice({
                 state[playerIndex].name = newName;
             }
         },
+
         clearState: (state, action) => {
             state.splice(0, state.length);
+        },
+
+        clearPoints: (state, action) => {
+            state.map((player) => {
+                player.points = 0;
+                player.pointsHistory = [];
+            });
         },
     },
 });
@@ -81,6 +89,7 @@ export const {
     editPoints,
     shufflePlayerList,
     clearState,
+    clearPoints,
 } = playersSlice.actions;
 
 export default playersSlice.reducer;

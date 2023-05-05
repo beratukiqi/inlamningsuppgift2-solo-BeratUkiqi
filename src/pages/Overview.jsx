@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import HeaderMenu from "../components/HeaderMenu";
 import ScoreBoard from "../components/ScoreBoard";
 import DangerZone from "../components/DangerZone";
-import PlayersIcon from "../components/icons/PlayersIcon";
+import SettingsIcon from "../components/icons/SettingsIcon";
 import Leaderboard from "../components/Leaderboard";
 import PrimaryButton from "../components/PrimaryButton";
 import GameRulesIcon from "../components/icons/GameRulesIcon";
@@ -22,7 +22,7 @@ function Overview() {
                 renderContent={() => (
                     <>
                         <GameRulesIcon onClick={() => navigate("/rules")} />
-                        <PlayersIcon onClick={() => navigate("/players")} />
+                        <SettingsIcon onClick={() => navigate("/settings")} />
                     </>
                 )}
             />

@@ -1,4 +1,4 @@
-function PlayersIcon({ onClick }) {
+function SettingsIcon({ onClick }) {
     return (
         <div>
             <svg
@@ -14,4 +14,4 @@ function PlayersIcon({ onClick }) {
     );
 }
 
-export default PlayersIcon;
+export default SettingsIcon;

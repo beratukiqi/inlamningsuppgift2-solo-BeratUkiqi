@@ -1,7 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { shufflePlayerList, generatePlayer } from "../app/playersSlice";
+import {
+    shufflePlayerList,
+    generatePlayer,
+    clearState,
+    clearPoints,
+} from "../app/playersSlice";
 import {
     changeNoOfPlayers,
     changeMaxPoints,
@@ -18,12 +23,15 @@ import BackButtonIcon from "../components/icons/BackButtonIcon";
 import SecondaryButton from "../components/SecondaryButton";
 import ContentContainer from "../components/ContentContainer";
 import style from "../styles/pages/Players.module.scss";
+import TrashIcon from "../components/icons/TrashIcon";
 
 function Players() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const gameSettings = useSelector((state) => state.gameSettings);
     const playerList = useSelector((state) => state.players);
+    const [confirmed, setConfirmed] = useState(false);
+
     useEffect(() => {
         async function fetchNameData() {
             try {
@@ -54,6 +62,13 @@ function Players() {
         const playersListCopy = [...playerList];
         const shuffledPlayers = shuffleArray(playersListCopy);
         dispatch(shufflePlayerList(shuffledPlayers));
+    };
+
+    // Shuffles the players and updates the state accordingly
+    const handleResetClick = () => {
+        // Handles state to only be reset once on page
+        !confirmed && dispatch(clearPoints());
+        setConfirmed(true);
     };
 
     // Generates a unique name to a player
@@ -131,6 +146,18 @@ function Players() {
                     subTitle={"Feel free to tweak things to your likings. "}
                 />
                 <ContentContainer
+                    title={"MAX points"}
+                    renderContent={() => (
+                        <InputField
+                            type={"number"}
+                            defaultValue={gameSettings.maxPoints}
+                            onBlur={handleMaxPoints}
+                            inputmode={"numeric"}
+                            pattern={"[d+-]"}
+                        />
+                    )}
+                />
+                <ContentContainer
                     title={"Players"}
                     renderContent={() => (
                         <>
@@ -148,19 +175,20 @@ function Players() {
                     action={handleShuffleClick}
                     icon={<ShuffleIcon />}
                 />
-                <ContentContainer
-                    title={"MAX points"}
-                    renderContent={() => (
-                        <InputField
-                            type={"number"}
-                            defaultValue={gameSettings.maxPoints}
-                            onBlur={handleMaxPoints}
-                            inputmode={"numeric"}
-                            pattern={"[d+-]"}
-                        />
-                    )}
+                <PrimaryButton
+                    className={
+                        !confirmed ? "resetButton" : "resetButton-confirmed"
+                    }
+                    title={"Reset player points"}
+                    icon={
+                        !confirmed ? (
+                            <TrashIcon />
+                        ) : (
+                            <TrashIcon confirmed={true} />
+                        )
+                    }
+                    action={handleResetClick}
                 />
-                <PrimaryButton title={"Let's play!"} path={"/overview"} />
             </main>
         </section>
     );

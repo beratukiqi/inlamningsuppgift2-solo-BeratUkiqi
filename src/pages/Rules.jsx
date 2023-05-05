@@ -45,7 +45,7 @@ function Rules() {
                 <ContentContainer
                     title={"Instruktioner"}
                     renderContent={() => (
-                        <ul>
+                        <ol>
                             <li>
                                 Varje spelare startar med 7 kort. <br />
                                 Spelet går i turordning.
@@ -86,7 +86,7 @@ function Rules() {
                                 Spelet fortsätter tills någon spelare lagt ut
                                 alla sina kort eller tills någon cuttar spelet
                             </li>
-                        </ul>
+                        </ol>
                     )}
                 />
 
